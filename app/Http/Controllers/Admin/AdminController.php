@@ -18,7 +18,7 @@ class AdminController extends Controller
         if($request->isMethod('post'))
         {
             $role = [
-                'email'     => 'required|emails|max:255',
+                'email'     => 'required|email|max:255',
                 'password'  => 'required',
             ];
             $custome = [
