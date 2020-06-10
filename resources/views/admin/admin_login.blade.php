@@ -1,12 +1,9 @@
 <!doctype html>
 <html lang="en" class="fixed accounts sign-in">
-
-
-<!-- Mirrored from myiideveloper.com/helsinki/last-version/helsinki_green-dark/src/pages_sign-in.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Mar 2019 13:05:33 GMT -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Helsinki</title>
+    <title>TECHZONE LOGIN</title>
     <link rel="apple-touch-icon" sizes="120x120" href="{{asset('admin')}}/favicon/apple-icon-120x120.png">
     <link rel="icon" type="image/png" sizes="192x192" href="{{asset('admin')}}/favicon/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="{{asset('admin')}}/favicon/favicon-32x32.png">
@@ -31,39 +28,47 @@
         <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
         <!--LOGO-->
         <div class="logo">
-            <img alt="logo" src="{{asset('admin')}}/images/logo-dark.png" />
+            <!-- <img alt="logo" src="{{asset('admin')}}/images/logo-dark.png" /> -->
+            <center><h1 style="color: #1a17ef;">TECHZONE</h1></center>
         </div>
         <div class="box">
             <!--SIGN IN FORM-->
             <div class="panel mb-none">
                 <div class="panel-content bg-scale-0">
-                    <form>
+            @if(Session::has('login_error'))
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Warning!</strong>{{Session::get('login_error')}}
+                </div>
+            @endif
+                    <form action="{{url('admin')}}" method="post"> @csrf
                         <div class="form-group mt-md">
                             <span class="input-with-icon">
-                                <input type="email" class="form-control" id="email" placeholder="Email">
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="Email" autofocus>
                                 <i class="fa fa-envelope"></i>
+                               
                             </span>
                         </div>
                         <div class="form-group">
                             <span class="input-with-icon">
-                                <input type="password" class="form-control" id="password" placeholder="Password">
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                                 <i class="fa fa-key"></i>
                             </span>
                         </div>
                         <div class="form-group">
                             <div class="checkbox-custom checkbox-primary">
-                                <input type="checkbox" id="remember-me" value="option1" checked>
+                                <input type="checkbox" id="remember-me" value="remember-me">
                                 <label class="check" for="remember-me">Remember me</label>
                             </div>
                         </div>
                         <div class="form-group">
-                            <a href="index.html" class="btn btn-primary btn-block">Sign in</a>
+                            <input type="submit" value="Sign in" class="btn btn-primary btn-block">
                         </div>
                         <div class="form-group text-center">
                             <a href="pages_forgot-password.html">Forgot password?</a>
-                            <hr/>
+                            <!-- <hr/>
                              <span>Don't have an account?</span>
-                            <a href="pages_register.html" class="btn btn-block mt-sm">Register</a>
+                            <a href="pages_register.html" class="btn btn-block mt-sm">Register</a> -->
                         </div>
                     </form>
                 </div>
