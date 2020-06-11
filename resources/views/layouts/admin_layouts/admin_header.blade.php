@@ -209,7 +209,7 @@
                     <img alt="profile photo" src="{{asset('admin')}}/images/avatar/avatar_user.jpg" />
                 </div>
                 <div class="user-info">
-                    <span class="user-name">Jane Doe</span>
+                    <span class="user-name">{{Auth::user()->name}}</span>
                     <span class="user-profile">Admin</span>
                 </div>
                 <i class="fa fa-plus icon-open" aria-hidden="true"></i>
@@ -219,6 +219,7 @@
                 <div class="drop-content basic">
                     <ul>
                         <li> <a href="pages_user-profile.html"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
+                        <li> <a href="{{ url('admin/setting') }}"><i class="fa fa-user" aria-hidden="true"></i> Setting</a></li>
                         <li> <a href="pages_lock-screen.html"><i class="fa fa-lock" aria-hidden="true"></i> Lock Screen</a></li>
                         <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i> Configurations</a></li>
                     </ul>

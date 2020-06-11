@@ -41,6 +41,18 @@
                 <strong>Warning!</strong>{{Session::get('login_error')}}
                 </div>
             @endif
+            @error('email')
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Warning!</strong>{{ $message }}
+                </div>
+             @enderror
+            @error('password')
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Warning!</strong>{{ $message }}
+                </div>
+             @enderror
                     <form action="{{url('admin')}}" method="post"> @csrf
                         <div class="form-group mt-md">
                             <span class="input-with-icon">
