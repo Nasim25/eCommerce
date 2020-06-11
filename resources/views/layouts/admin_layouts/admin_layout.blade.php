@@ -27,6 +27,9 @@
     <!--TEMPLATE css-->
     <!-- ========================================================= -->
     <link rel="stylesheet" href="{{asset('admin')}}/stylesheets/css/style.css">
+    <script src="{{asset('admin')}}/vendor/jquery/jquery-1.12.3.min.js"></script>
+    <!-- custome js -->
+    <script src="{{asset('admin/js/admin_js.js')}}"></script>
 
 
 </head>
@@ -147,7 +150,7 @@
     </div>
     <!--BASIC scripts-->
     <!-- ========================================================= -->
-    <script src="{{asset('admin')}}/vendor/jquery/jquery-1.12.3.min.js"></script>
+    
     <script src="{{asset('admin')}}/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="{{asset('admin')}}/vendor/nano-scroller/nano-scroller.js"></script>
     <!--TEMPLATE scripts-->
