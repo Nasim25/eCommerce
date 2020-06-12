@@ -22,7 +22,6 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <form id="updatePasswordForm" name="updatePasswordForm" class="form-horizontal form-stripe" action="{{ url('admin/setting-update') }}" method="post">@csrf
-                                        
                                         <div class="form-group">
                                             <label for="email" class="col-sm-3 control-label">Admin Name<span class="required">*</span></label>
                                             <div class="col-sm-9">
@@ -57,13 +56,21 @@
                                         <div class="form-group">
                                             <label for="cofirmation" class="col-sm-3 control-label">Confirmation<span class="required">*</span></label>
                                             <div class="col-sm-9">
-                                                <input type="password" class="form-control" id="cofirmation" name="confirmation" required>
+                                                <input type="password" class="form-control" id="cofirmation" name="cofirmation" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-sm-offset-3 col-sm-9">
                                                 <button type="submit" class="btn btn-primary">Submit</button>
+                                                @if(Session::get('success_message'))
+                                                <span class="required" style="color:green">{{Session::get('success_message')}}</span>
+                                                @endif
+                                                @if(Session::get('error_message'))
+                                                    <span class="required">{{Session::get('error_message')}}</span>
+                                                @endif
                                             </div>
+                                            
+
                                         </div>
                                     </form>
                                 </div>

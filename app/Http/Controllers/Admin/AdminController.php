@@ -32,6 +32,27 @@ class AdminController extends Controller
             echo 'false';
         }
     }
+
+    public function setting_update(Request $request)
+    {
+        if($request->isMethod('post'))
+        {
+            $data = $request->all();
+            if(Hash::check($data['current_password'],Auth::guard('admin')->user()->password))
+            {
+                if($data['new_password'] == $data['cofirmation'])
+                {
+                    Admin::where('id',Auth::guard('admin')->user()->id)->update(['password'=> Hash::make($data['new_password'])]);
+                    Session::flash('success_message','Password has been update successfully');
+                    return redirect()->back();
+                }
+            }else{
+                Session::flash('error_message','new password and confirm password not match');
+            }
+        }
+        Session::flash('error_message','current password in incorrect');
+        return redirect()->back();
+    }
     public function login(Request $request)
     {
         if($request->isMethod('post'))

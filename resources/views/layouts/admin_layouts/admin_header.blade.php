@@ -209,7 +209,7 @@
                     <img alt="profile photo" src="{{asset('admin')}}/images/avatar/avatar_user.jpg" />
                 </div>
                 <div class="user-info">
-                    <span class="user-name">{{Auth::user()->name}}</span>
+                    <span class="user-name">{{Auth::guard('admin')->user()->name}}</span>
                     <span class="user-profile">Admin</span>
                 </div>
                 <i class="fa fa-plus icon-open" aria-hidden="true"></i>
