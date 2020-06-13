@@ -2,8 +2,8 @@
     <!-- LEFTSIDE header -->
     <div class="leftside-header">
         <div class="logo">
-            <a href="index.html" class="on-click">
-                <img alt="logo" src="{{asset('admin')}}/images/header-logo.png" />
+            <a href="{{ url('admin/deshboard') }}" class="on-click">
+                <img alt="logo" src="{{asset('admin')}}/images/techzone.png" />
             </a>
         </div>
         <div id="menu-toggle" class="visible-xs toggle-left-sidebar" data-toggle-class="left-sidebar-open" data-target="html">
