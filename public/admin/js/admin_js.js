@@ -23,8 +23,9 @@ $(document).ready(function(){
         }
     });
 
-
-
+    $('#section_status_change').click(function(){
+        alert('hello');
+    })
 
 
 });

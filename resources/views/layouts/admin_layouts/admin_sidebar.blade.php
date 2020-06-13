@@ -13,7 +13,7 @@
             <nav>
                 <ul class="nav nav-left-lines" id="main-nav">
                     <!--HOME-->
-                    <li class="active-item"><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span></a></li>
+                    <li class="active-item"><a href="{{ url('admin/deshboard')}}"><i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span></a></li>
                     <!--UI ELEMENTENTS-->
                     <li class="has-child-item close-item">
                         <a><i class="fa fa-cubes" aria-hidden="true"></i><span>UI Elements</span></a>

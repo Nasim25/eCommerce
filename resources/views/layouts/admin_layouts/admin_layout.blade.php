@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Helsinki</title>
+    <title>@yield('admin_title')</title>
     <link rel="apple-touch-icon" sizes="120x120" href="{{asset('admin')}}/favicon/apple-icon-120x120.png">
     <link rel="icon" type="image/png" sizes="192x192" href="{{asset('admin')}}/favicon/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="{{asset('admin')}}/favicon/favicon-32x32.png">
@@ -27,6 +27,8 @@
     <!--TEMPLATE css-->
     <!-- ========================================================= -->
     <link rel="stylesheet" href="{{asset('admin')}}/stylesheets/css/style.css">
+
+    @yield('admin_css')
     <script src="{{asset('admin')}}/vendor/jquery/jquery-1.12.3.min.js"></script>
     <!-- custome js -->
     <script src="{{asset('admin/js/admin_js.js')}}"></script>
@@ -167,6 +169,8 @@
     <script src="{{asset('admin')}}/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
     <!--Examples-->
     <script src="{{asset('admin')}}/javascripts/examples/dashboard.js"></script>
+    
+    @yield('admin_js')
 </body>
 
 </html>
