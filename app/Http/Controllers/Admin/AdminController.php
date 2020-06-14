@@ -13,6 +13,7 @@ class AdminController extends Controller
 {
     public function deshboard()
     {
+        Session::put('page','admin');
         return view('admin.deshboard');
     }
 

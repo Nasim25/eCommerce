@@ -23,8 +23,25 @@ $(document).ready(function(){
         }
     });
 
-    $('#section_status_change').click(function(){
-        alert('hello');
+    $('.sectionUpdateStatus').click(function(){
+         var status = $(this).text();
+         var section_id = $(this).attr("section_id");
+         $.ajax({
+             type:'post',
+             url:'/eCommerce/admin/section-update-status',
+             data:{status:status,section_id:section_id},
+             success:function(rep){
+                    if(rep['status']==0)
+                    {
+                        $('#section-'+section_id).html("<a class='sectionUpdateStatus' href='javascript:void(0)'>Inactive</a>")
+                    }else if(rep['status'] == 1)
+                    {
+                        $('#section-'+section_id).html("<a class='sectionUpdateStatus' href='javascript:void(0)'>Active</a>")
+                    }
+             },error:function(){
+                alert('error');
+            }
+         })
     })
 
 

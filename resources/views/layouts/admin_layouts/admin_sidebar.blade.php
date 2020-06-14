@@ -13,28 +13,23 @@
             <nav>
                 <ul class="nav nav-left-lines" id="main-nav">
                     <!--HOME-->
-                    <li class="active-item"><a href="{{ url('admin/deshboard')}}"><i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span></a></li>
+                    @if(Session::get('page') == 'admin')
+                        <?php $active = "active"; ?>
+                    @else
+                    <?php $active = "close"; ?>
+                    @endif
+                    <li class="{{$active}}-item"><a href="{{ url('admin/deshboard')}}"><i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span></a></li>
                     <!--UI ELEMENTENTS-->
-                    <li class="has-child-item close-item">
-                        <a><i class="fa fa-cubes" aria-hidden="true"></i><span>UI Elements</span></a>
+                    @if(Session::get('page') == 'sections')
+                        <?php $active = "open"; ?>
+                    @else
+                    <?php $active = "close"; ?>
+                    @endif
+                    <li class="has-child-item {{$active}}-item">
+                        <a><i class="fa fa-cubes" aria-hidden="true"></i><span>Catalogues</span></a>
                         <ul class="nav child-nav level-1">
-                            <li><a href="ui-elements_panels.html">Panels</a></li>
-                            <li><a href="ui-elements_accordions.html">Accordions</a></li>
-                            <li><a href="ui-elements_tabs.html">Tabs</a></li>
-                            <li><a href="ui-elements_buttons.html">Buttons</a></li>
-                            <li><a href="ui-elements_typography.html">Typography</a></li>
-                            <li><a href="ui-elements_alerts.html">Alerts</a></li>
-                            <li><a href="ui-elements_modals.html">Modals</a></li>
-                            <li><a href="ui-elements_lightbox.html">Lightbox</a></li>
-                            <li class="has-child-item close-item">
-                                <a>Notifications</a>
-                                <ul class="nav child-nav level-2 ">
-                                    <li><a href="ui-elements_notifications-pnotify.html">PNotify</a></li>
-                                    <li><a href="ui-elements_notifications-toastr.html">Toastr</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="ui-elements_animations-appear.html">Animations</a></li>
-                            <li><a href="ui-elements_badges-tags.html">Badge & Tags</a></li>
+                            <li class="{{$active}}-item"><a href="{{ url('admin/section') }}">Section</a></li>
+                            <li><a href="ui-elements_accordions.html">Category</a></li>
                         </ul>
                     </li>
                     <!--CHARTS-->
@@ -160,10 +155,6 @@
                             </li>
                         </ul>
                     </li>
-
-                    <!--DOCUMENTATION-->
-                    <li><a target="_blank" href="http://myiideveloper.com/helsinki/last-version/documentation/index.html"><i class="fa fa-book" aria-hidden="true"></i><span>Online Documentation</span></a></li>
-
                 </ul>
             </nav>
         </div>

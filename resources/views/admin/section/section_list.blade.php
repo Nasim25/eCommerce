@@ -30,10 +30,10 @@
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $section->name }}</td>
-                                        <td>@if($section->status === '1')
-                                            <a id="section_status_change" class="btn btn-sm btn-info" > Active</a>
+                                        <td>@if($section->status ==1)
+                                            <a class="sectionUpdateStatus" href="javascript:void(0)" id="section-{{$section->id}}" section_id="{{$section->id}}">Active</a>
                                             @else
-                                            <a id="section_status_change" class="btn btn-sm btn-info" >Inactive</a> 
+                                            <a class="sectionUpdateStatus" href="javascript:void(0)" id="section-{{$section->id}}" section_id="{{$section->id}}">Inactive</a>
                                             @endif
                                         </td>
                                     </tr>

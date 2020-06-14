@@ -22,6 +22,7 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin'], function (
 
             // section
             Route::get('section','SectionController@section_list');
+            Route::post('section-update-status','SectionController@section_update_status');
     });
     
 });
