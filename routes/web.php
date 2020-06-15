@@ -23,6 +23,11 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin'], function (
             // section
             Route::get('section','SectionController@section_list');
             Route::post('section-update-status','SectionController@section_update_status');
+
+            // category
+            Route::get('category','CategoryController@category_list');
+            Route::post('category-update-status','CategoryController@category_update_status');
+            Route::match(['get','post'],'add-edit-category/{id?}','CategoryController@add_edit_category');
     });
     
 });
