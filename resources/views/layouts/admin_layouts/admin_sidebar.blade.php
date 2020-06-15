@@ -1,38 +1,38 @@
 <div class="left-sidebar">
-    <!-- left sidebar HEADER -->
+    
     <div class="left-sidebar-header">
         <div class="left-sidebar-title">Navigation</div>
         <div class="left-sidebar-toggle c-hamburger c-hamburger--htla hidden-xs" data-toggle-class="left-sidebar-collapsed" data-target="html">
             <span></span>
         </div>
     </div>
-    <!-- NAVIGATION -->
-    <!-- ========================================================= -->
+    
     <div id="left-nav" class="nano">
         <div class="nano-content">
             <nav>
                 <ul class="nav nav-left-lines" id="main-nav">
-                    <!--HOME-->
+                    
                     @if(Session::get('page') == 'admin')
                         <?php $active = "active"; ?>
                     @else
                     <?php $active = "close"; ?>
                     @endif
                     <li class="{{$active}}-item"><a href="{{ url('admin/deshboard')}}"><i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span></a></li>
-                    <!--UI ELEMENTENTS-->
-                    @if(Session::get('page') == 'sections')
+                    
+                    @if(Session::get('page') == 'sections' || Session::get('page') == "category")
                         <?php $active = "open"; ?>
                     @else
                     <?php $active = "close"; ?>
                     @endif
+
                     <li class="has-child-item {{$active}}-item">
                         <a><i class="fa fa-cubes" aria-hidden="true"></i><span>Catalogues</span></a>
                         <ul class="nav child-nav level-1">
                             <li class="{{$active}}-item"><a href="{{ url('admin/section') }}">Section</a></li>
-                            <li><a href="ui-elements_accordions.html">Category</a></li>
+                            <li class="{{$active}}-item"><a href="{{ url('admin/category') }}">Category</a></li>
                         </ul>
                     </li>
-                    <!--CHARTS-->
+                    
                     <li class="has-child-item close-item">
                         <a><i class="fa fa-pie-chart" aria-hidden="true"></i><span>Charts</span> </a>
                         <ul class="nav child-nav level-1">
@@ -41,7 +41,7 @@
                             <li><a href="charts_peity.html">Peity</a></li>
                         </ul>
                     </li>
-                    <!--FORMS-->
+                    
                     <li class="has-child-item close-item">
                         <a><i class="fa fa-columns" aria-hidden="true"></i><span>Forms </span></a>
                         <ul class="nav child-nav level-1">
@@ -52,7 +52,7 @@
                             <li><a href="forms_wizard.html">Wizard</a></li>
                         </ul>
                     </li>
-                    <!--TABLES-->
+                    
                     <li class="has-child-item close-item">
                         <a><i class="fa fa-table" aria-hidden="true"></i><span>Tables</span></a>
                         <ul class="nav child-nav level-1">
@@ -61,7 +61,7 @@
                             <li><a href="tables_responsive.html">Responsive</a></li>
                         </ul>
                     </li>
-                    <!--PAGES-->
+                    
                     <li class="has-child-item close-item">
                         <a><i class="fa fa-files-o" aria-hidden="true"></i><span>Pages</span></a>
                         <ul class="nav child-nav level-1">
@@ -96,7 +96,7 @@
 
                         </ul>
                     </li>
-                    <!--WIDGETS-->
+                    
                     <li class="has-child-item close-item">
                         <a><i class="fa fa-paper-plane" aria-hidden="true"></i><span>Widgets</span></a>
                         <ul class="nav child-nav level-1">
@@ -106,7 +106,7 @@
                             <li><a href="widgets_timelines.html">Timelines</a></li>
                         </ul>
                     </li>
-                    <!--HELPERS-->
+                    
                     <li class="has-child-item close-item">
                         <a><i class="fa fa-magic" aria-hidden="true"></i><span>Helpers</span></a>
                         <ul class="nav child-nav level-1">
@@ -114,7 +114,7 @@
                             <li><a href="helpers_margin-padding.html">Margin & Padding</a></li>
                         </ul>
                     </li>
-                    <!--MENU LEVELS-->
+                    
                     <li class=" has-child-item close-item">
                         <a>
                             <i class="fa fa-sitemap" aria-hidden="true"></i>
