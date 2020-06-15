@@ -12,79 +12,80 @@
                     </ul>
                 </div>
             </div>
+            
             <div class="row animated fadeInUp">
                 <div class="col-sm-12 col-md-12 ">
                     <h4 class="section-subtitle"><b>Add Category</b></h4>
                     <div class="panel">
                         <div class="panel-content">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="panel-content">
-                                        <div class="form-group">
-                                            <label for="state-success" class="control-label">Category Name</label>
-                                            <input type="text" class="form-control" id="state-success">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="state-warning" class="control-label">Select Catagory Level</label>
-                                            <select class="form-control" name="cars" id="cars">
-                                                <option value="volvo">Volvo</option>
-                                                <option value="saab">Saab</option>
-                                                <option value="mercedes">Mercedes</option>
-                                                <option value="audi">Audi</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="state-error" class="control-label">Category Discount</label>
-                                            <input type="text" class="form-control" id="state-error">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="textareaMaxLength" class="control-label">Category Discription</label>
-                                            <textarea class="form-control" rows="3" id="textareaMaxLength" placeholder="Write a comment" maxlength="100"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="textareaMaxLength" class="control-label">Meta Discription</label>
-                                            <textarea class="form-control" rows="3" id="textareaMaxLength" placeholder="Write a comment" maxlength="100"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="panel-content">
-                                        <div class="form-group">
-                                            <label for="state-warning" class="control-label">Select Section</label>
-                                            <select class="form-control" name="cars" id="cars">
-                                                <option value="volvo">Volvo</option>
-                                                <option value="saab">Saab</option>
-                                                <option value="mercedes">Mercedes</option>
-                                                <option value="audi">Audi</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group has-feedback">
-                                            <label for="state-warning-feedback" class="control-label">Category Image</label>
-                                            <input type="file" class="form-control" id="state-warning-feedback">
-                                            <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="state-warning-feedback" class="control-label">Category URL</label>
-                                            <input type="text" class="form-control" id="state-warning-feedback">
-                                            <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="textareaMaxLength" class="control-label">Meta Title</label>
-                                            <textarea class="form-control" rows="3" id="textareaMaxLength" placeholder="Write a comment" maxlength="100"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="textareaMaxLength" class="control-label">Meta Keywords</label>
-                                            <textarea class="form-control" rows="3" id="textareaMaxLength" placeholder="Write a comment" maxlength="100"></textarea>
+                            <form method="post" action="{{ url('admin/add-edit-category')}}">@csrf
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="panel-content">
+                                            <div class="form-group">
+                                                <label for="state-success" class="control-label">Category Name</label>
+                                                <input type="text" class="form-control" name="category_name" id="category_name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="state-warning" class="control-label">Select Catagory Level</label>
+                                                <select class="form-control" name="parent_id" id="parent_id">
+                                                    <option value="1">Volvo</option>
+                                                    <option value="2">Saab</option>
+                                                    <option value="3">Mercedes</option>
+                                                    <option value="4">Audi</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="state-error" class="control-label">Category Discount</label>
+                                                <input type="text" class="form-control" id="category_discount" name="category_discount">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="description" class="control-label">Category Discription</label>
+                                                <textarea class="form-control" name="description" rows="3" id="description" placeholder="Write a comment" maxlength="100"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="meta_description" class="control-label">Meta Discription</label>
+                                                <textarea class="form-control" rows="3" name="meta_description" id="meta_description" placeholder="Write a comment" maxlength="100"></textarea>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="panel-content">
+                                            <div class="form-group">
+                                                <label  class="control-label">Select Section</label>
+                                                <select class="form-control" name="section_id" id="section_id">
+                                                    <option value="">Select Section</option>
+                                                    @foreach ($sections as $section)
+                                                    <option value="{{$section->id}}">{{$section->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group has-feedback">
+                                                <label for="category_image" class="control-label">Category Image</label>
+                                                <input type="file" class="form-control" id="category_image" name="category_image">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="url" class="control-label">Category URL</label>
+                                                <input type="text" class="form-control" id="url" name="url">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="meta_title" class="control-label">Meta Title</label>
+                                                <textarea class="form-control" rows="3" id="meta_title" name="meta_title" placeholder="Write a comment" maxlength="100"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="meta_keywords" class="control-label">Meta Keywords</label>
+                                                <textarea class="form-control" rows="3" name="meta_keywords" id="meta_keywords" placeholder="Write a comment" maxlength="100"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input style="width:83px;margin-left:27px;" class="btn btn-md btn-success" type="submit" value="Submit">
                                 </div>
-
-                                <input style="width:83px;margin-left:27px;" class="btn btn-md btn-success" type="submit" value="Submit">
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
 @endsection
