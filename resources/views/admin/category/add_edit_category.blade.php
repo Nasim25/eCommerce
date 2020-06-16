@@ -18,17 +18,17 @@
                     <h4 class="section-subtitle"><b>Add Category</b></h4>
                     <div class="panel">
                         <div class="panel-content">
-                            <form method="post" action="{{ url('admin/add-edit-category')}}">@csrf
+                            <form method="post" id="categoryForm" name="categoryForm" action="{{ url('admin/add-edit-category')}}" enctype="multipart/form-data">@csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="panel-content">
                                             <div class="form-group">
                                                 <label for="state-success" class="control-label">Category Name</label>
-                                                <input type="text" class="form-control" name="category_name" id="category_name">
+                                                <input type="text" class="form-control" name="category_name" id="category_name" required >
                                             </div>
                                             <div class="form-group">
                                                 <label for="state-warning" class="control-label">Select Catagory Level</label>
-                                                <select class="form-control" name="parent_id" id="parent_id">
+                                                <select class="form-control" name="parent_id" id="parent_id" required>
                                                     <option value="1">Volvo</option>
                                                     <option value="2">Saab</option>
                                                     <option value="3">Mercedes</option>
@@ -53,7 +53,7 @@
                                         <div class="panel-content">
                                             <div class="form-group">
                                                 <label  class="control-label">Select Section</label>
-                                                <select class="form-control" name="section_id" id="section_id">
+                                                <select class="form-control" name="section_id" id="section_id" required>
                                                     <option value="">Select Section</option>
                                                     @foreach ($sections as $section)
                                                     <option value="{{$section->id}}">{{$section->name}}</option>
