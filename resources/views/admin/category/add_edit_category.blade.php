@@ -26,14 +26,8 @@
                                                 <label for="state-success" class="control-label">Category Name</label>
                                                 <input type="text" class="form-control" name="category_name" id="category_name" required >
                                             </div>
-                                            <div class="form-group">
-                                                <label for="state-warning" class="control-label">Select Catagory Level</label>
-                                                <select class="form-control" name="parent_id" id="parent_id" required>
-                                                    <option value="1">Volvo</option>
-                                                    <option value="2">Saab</option>
-                                                    <option value="3">Mercedes</option>
-                                                    <option value="4">Audi</option>
-                                                </select>
+                                            <div id="appandCatagoryLavel">
+                                                @include('admin/category/appand_catagory_lavel')
                                             </div>
                                             <div class="form-group">
                                                 <label for="state-error" class="control-label">Category Discount</label>

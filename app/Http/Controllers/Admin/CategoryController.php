@@ -14,8 +14,13 @@ class CategoryController extends Controller
     public function category_list()
     {
         Session::put('page','category');
-        $categoris = Category::orderBy('category_name')->get();
-        return view('admin.category.category_list',compact('categoris'));
+        // $categoris = Category::with(['section'=>function($query){
+        //     $query->select('id','name');
+        // }])->orderBy('category_name')->get();
+        $categoris = Category::with(['section','parentcategory'])->orderBy('category_name')->get();
+       $categoris = json_decode(json_encode($categoris));
+        // echo "<pre>"; print_r($categoris);die;
+        return view('admin.category.category_list')->with(compact('categoris'));
     }
     public function category_update_status(Request $request)
     {
@@ -111,8 +116,21 @@ class CategoryController extends Controller
             $category->meta_keywords = $data['meta_keywords'];
             $category->status = '1';
             $category->save();
+            return redirect('admin/category');
         }
         $sections = Section::where('status',1)->orderBy('name')->get();
         return view('admin.category.add_edit_category',compact('sections'));
+    }
+
+    public function appand_category_lavel(Request $request)
+    {
+        if($request->ajax())
+        {
+            $data = $request->all();
+            $getCategory = Category::with('subcategories')->where(['section_id'=>$data['section_id'],'parent_id'=>0,'status'=>1])->get();
+            // echo "<pre>"; print_r($getCategory);die;
+            $getCategory = json_decode(json_encode($getCategory),true);
+            return view('admin.category.appand_catagory_lavel',compact('getCategory'));
+        }
     }
 }
