@@ -29,6 +29,10 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin'], function (
             Route::post('category-update-status','CategoryController@category_update_status');
             Route::match(['get','post'],'add-edit-category/{id?}','CategoryController@add_edit_category');
             Route::post('appand-category-lavel','CategoryController@appand_category_lavel');
+
+            // product
+            Route::get('product','ProductController@product_list');
+            Route::post('product-update-status','ProductController@product_update_status');
     });
     
 });

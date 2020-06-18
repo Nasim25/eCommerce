@@ -19,7 +19,7 @@
                     @endif
                     <li class="{{$active}}-item"><a href="{{ url('admin/deshboard')}}"><i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span></a></li>
                     
-                    @if(Session::get('page') == 'sections' || Session::get('page') == "category")
+                    @if(Session::get('page') == 'sections' || Session::get('page') == "category" || Session::get('page') == 'product')
                         <?php $active = "open"; ?>
                     @else
                     <?php $active = "close"; ?>
@@ -28,8 +28,24 @@
                     <li class="has-child-item {{$active}}-item">
                         <a><i class="fa fa-cubes" aria-hidden="true"></i><span>Catalogues</span></a>
                         <ul class="nav child-nav level-1">
-                            <li class="{{$active}}-item"><a href="{{ url('admin/section') }}">Section</a></li>
-                            <li class="{{$active}}-item"><a href="{{ url('admin/category') }}">Category</a></li>
+                            @if(Session::get('page')=='sections')
+                            <?php $section = "open"; ?>
+                            @else
+                            <?php $section = "close"; ?>
+                            @endif
+                            <li class="{{$section}}-item"><a href="{{ url('admin/section') }}">Section</a></li>
+                            @if(Session::get('page')=='category')
+                            <?php $category = "open"; ?>
+                            @else
+                            <?php $category = "close"; ?>
+                            @endif
+                            <li class="{{$category}}-item"><a href="{{ url('admin/category') }}">Category</a></li>
+                            @if(Session::get('page')=='product')
+                            <?php $product = "open"; ?>
+                            @else
+                            <?php $product = "close"; ?>
+                            @endif
+                            <li class="{{$product}}-item"><a href="{{ url('admin/product') }}">Product</a></li>
                         </ul>
                     </li>
                     

@@ -1,54 +1,48 @@
 @extends('layouts.admin_layouts.admin_layout')
-@section('admin_title','Category');
+@section('admin_title','Section List');
 @section('content')
 
 <div class="content">
             <div class="content-header">
                 <div class="leftside-content-header">
                     <ul class="breadcrumbs">
-                        <li><i class="fa fa-table" aria-hidden="true"></i><a href="#">Category</a></li>
-                        <li><a>Category List</a></li>
+                        <li><i class="fa fa-table" aria-hidden="true"></i><a href="#">Catalogues</a></li>
+                        <li><a>Product List</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="row animated fadeInRight">
                     <div class="col-sm-12">
-                        <h4 style="background: white;padding: 13px;border-radius: 3px;margin-bottom: 1px;" class="section-subtitle"><b>Category</b>
-                        <a href="{{ url('admin/add-edit-category')}}" class="btn btn-sm btn-success pull-right" style="margin-top:-6px;">Add Category</a>
-                        </h4>
-                        
+                        <h4 style="background: white;padding: 13px;border-radius: 3px;margin-bottom: 1px;" class="section-subtitle"><b>Product</b></h4>
                         <div class="panel">
                             <div class="panel-content">
                                 <table id="responsive-table" class="data-table table table-striped table-hover table-bordered responsive nowrap" cellspacing="0" width="100%">
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Category Name</th>
-                                        <th>Parent Category</th>
+                                        <th>Product Name</th>
+                                        <th>Product Code</th>
+                                        <th>Product Color</th>
+                                        <th>Category</th>
                                         <th>Section</th>
-                                        <th>URL</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($categoris as $key => $category)
-                                    @if(!isset($category->parentcategory->category_name))
-                                    <?php $parent_cat = 'root'; ?>
-                                    @else
-                                    <?php $parent_cat = $category->parentcategory->category_name; ?>
-                                    @endif
+                                    @foreach($products as $key => $product)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
-                                        <td>{{ $category->category_name }}</td>
-                                        <td>{{ $parent_cat }}</td>
-                                        <td>{{ $category->section->name }}</td>
-                                        <td>{{ $category->url }}</td>
-                                        <td>@if($category->status ==1)
-                                            <a class="categoryUpdateStatus" href="javascript:void(0)" id="category-{{$category->id}}" category_id="{{$category->id}}">Active</a>
+                                        <td>{{ $product->product_name }}</td>
+                                        <td>{{ $product->product_code }}</td>
+                                        <td>{{ $product->product_color }}</td>
+                                        <td>{{ $product->category->category_name }}</td>
+                                        <td>{{ $product->section->name }}</td>
+                                        <td>@if($product->status ==1)
+                                            <a class="productUpdateStatus" href="javascript:void(0)" id="product-{{$product->id}}" product_id="{{$product->id}}">Active</a>
                                             @else
-                                            <a class="categoryUpdateStatus" href="javascript:void(0)" id="category-{{$category->id}}" category_id="{{$category->id}}">Inactive</a>
+                                            <a class="productUpdateStatus" href="javascript:void(0)" id="product-{{$product->id}}" product_id="{{$product->id}}">Inactive</a>
                                             @endif
                                         </td>
                                         <td>
