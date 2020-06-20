@@ -43,7 +43,6 @@ class CategoryController extends Controller
     {
         if($id =="")
         {
-           
             $category = new Category();    
         }else{
             $category = Category::where('id',$id)->first();
@@ -64,6 +63,7 @@ class CategoryController extends Controller
                 'url.required'              =>'URL is required',
                 'category_image.image'      =>'Valid image is required'
             ];
+            $this->validate($request,$rules,$customeMessage);
             if($request->hasFile('category_image'))
             {
                 $image_temp = $request->file('category_image');

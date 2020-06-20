@@ -33,6 +33,7 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin'], function (
             // product
             Route::get('product','ProductController@product_list');
             Route::post('product-update-status','ProductController@product_update_status');
+            Route::match(['get','post'],'add-edit-product/{id?}','ProductController@add_edit_product');
     });
     
 });
