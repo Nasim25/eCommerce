@@ -14,7 +14,10 @@
 
             <div class="row animated fadeInRight">
                     <div class="col-sm-12">
-                        <h4 style="background: white;padding: 13px;border-radius: 3px;margin-bottom: 1px;" class="section-subtitle"><b>Product</b></h4>
+                        <h4 style="background: white;padding: 13px;border-radius: 3px;margin-bottom: 1px;" class="section-subtitle"><b>Product</b>
+                        <a href="{{ url('admin/add-edit-product')}}" class="btn btn-sm btn-success pull-right" style="margin-top:-6px;">Add Product</a>
+                        </h4>
+                        </h4>
                         <div class="panel">
                             <div class="panel-content">
                                 <table id="responsive-table" class="data-table table table-striped table-hover table-bordered responsive nowrap" cellspacing="0" width="100%">
@@ -24,6 +27,7 @@
                                         <th>Product Name</th>
                                         <th>Product Code</th>
                                         <th>Product Color</th>
+                                        <th>Product Image</th>
                                         <th>Category</th>
                                         <th>Section</th>
                                         <th>Status</th>
@@ -37,6 +41,8 @@
                                         <td>{{ $product->product_name }}</td>
                                         <td>{{ $product->product_code }}</td>
                                         <td>{{ $product->product_color }}</td>
+                                        <td>
+                                        <center><img src="{{ asset($product->main_image) }}" style="width:100px;height:100px;" /></center></td>
                                         <td>{{ $product->category->category_name }}</td>
                                         <td>{{ $product->section->name }}</td>
                                         <td>@if($product->status ==1)
