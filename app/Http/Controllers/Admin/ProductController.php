@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Session;
 use Image;
+use Session;
 use App\Product;
 use App\Section;
 use App\Category;
+use App\ProductAttribute;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -177,5 +178,37 @@ class ProductController extends Controller
         // echo "<pre>";print_r($category);die;
         return view('admin.product.add_product')->with(compact('fabricArray','sleeveArray','patternArray','fitArray','occasionArray','category'));
         
+    }
+
+    public function add_attributes(Request $request,$id=NULL)
+    {
+        if($request->isMethod('post'))
+        {
+            $data = $request->all();
+            // echo "<pre>";print_r($data);die;
+            foreach($data['sku'] as $key => $value)
+            {
+                if(!empty($value))
+                {
+                    $attribute = new ProductAttribute();
+                    $attribute->product_id = $data['product_id'];
+                    $attribute->sku = $value;
+                    $attribute->size = $data['size'][$key];
+                    $attribute->price = $data['price'][$key];
+                    $attribute->stock = $data['stock'][$key];
+                    $attribute->save();
+                }
+            }
+            return redirect()->back();
+        }
+        $productDetails = Product::where('id',$id)->first();
+        $attributeDetails = ProductAttribute::where('product_id',$productDetails->id)->get();
+        return view('admin.product.attributes',compact('productDetails','attributeDetails'));
+    }
+
+    public function delete_attributes($id)
+    {
+        ProductAttribute::where('id',$id)->delete();
+        return redirect()->back();
     }
 }
