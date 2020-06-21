@@ -169,6 +169,7 @@
     <script src="{{asset('admin')}}/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
     <!--Examples-->
     <script src="{{asset('admin')}}/javascripts/examples/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     
     @yield('admin_js')
 </body>

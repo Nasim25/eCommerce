@@ -52,7 +52,9 @@
                                             @endif
                                         </td>
                                         <td>
+                                            <a href="{{url('admin/add-attributes/'.$product->id)}}"><i class="fa fa-plus" aria-hidden="true"></i></a>
                                             <a href=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                            <a href=""><i class="fa fa-image"></i></a>
                                             <a href=""><i style="color:red;" class="fa fa-trash" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
