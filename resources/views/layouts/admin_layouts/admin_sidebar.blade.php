@@ -48,14 +48,13 @@
                             <li class="{{$product}}-item"><a href="{{ url('admin/product') }}">Product</a></li>
                         </ul>
                     </li>
-                    
-                    <li class="has-child-item close-item">
-                        <a><i class="fa fa-pie-chart" aria-hidden="true"></i><span>Charts</span> </a>
-                        <ul class="nav child-nav level-1">
-                            <li><a href="charts_chart-js.html">CharJS</a></li>
-                            <li><a href="charts_morris.html">Morris</a></li>
-                            <li><a href="charts_peity.html">Peity</a></li>
-                        </ul>
+                    @if(Session::get('page')=='slider')
+                        <?php $slider = "open"; ?>
+                    @else
+                        <?php $slider = "close"; ?>
+                    @endif
+                    <li class=" {{$slider}}-item">
+                        <a href="{{url('admin/slider')}}"><i class="fa fa-pie-chart" aria-hidden="true"></i><span>Sliders</span></a>
                     </li>
                     
                     <li class="has-child-item close-item">

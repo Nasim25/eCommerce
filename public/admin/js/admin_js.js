@@ -127,5 +127,27 @@ $(document).ready(function(){
           });
     });
 
+    // slider
+    $('.sliderUpdateStatus').click(function(){
+        var slider_id = $(this).attr('slider_id');
+        var status = $(this).text();
+        $.ajax({
+            type: 'post',
+            url: '/eCommerce/admin/slider-update-status',
+            data:{slider_id:slider_id,status:status},
+            success:function(resp){
+                if(resp['status']==0)
+                    {
+                        $('#slider-'+slider_id).html("<a class='sliderUpdateStatus' href='javascript:void(0)'>Inactive</a>")
+                    }else if(resp['status']==1)
+                    {
+                        $('#slider-'+slider_id).html("<a class='sliderUpdateStatus' href='javascript:void(0)'>Active</a>")
+                    }
+            },error:function(){
+                alert('Error');
+            }
+        })
+    })
+
 });
 

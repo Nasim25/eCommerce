@@ -17,4 +17,8 @@ class Category extends Model
     {
         return $this->belongsTo('App\Category','parent_id')->select('id','category_name');
     }
+    public function slider()
+    {
+        return $this->belongsTo('App\Slider','category_id')->select('id','category_name');
+    }
 }

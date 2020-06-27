@@ -3,12 +3,11 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['namespace'=>'FrontEnd'],function(){
+    Route::get('/','HomeController@home');
 });
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin'], function (){
@@ -37,6 +36,10 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin'], function (
             // product attribuites
             Route::match(['get','post'],'add-attributes/{id}','ProductController@add_attributes');
             Route::get('delete-attributes/{id}','ProductController@delete_attributes');
+            // sleders
+            Route::get('slider','SliderController@slider');
+            Route::post('/slider-update-status','SliderController@slider_update_status');
+            Route::match(['get','post'],'slider-add/{id?}','SliderController@slider_add');
     });
     
 });
