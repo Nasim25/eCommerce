@@ -32,12 +32,12 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($sliders as $slider)
+                                    @foreach($sliders as $key=>$slider)
                                     <tr>
-                                        <td>{{$slider->slide_name}}</td>
+                                        <td>{{$key + 1}}</td>
                                         <td>{{$slider->slide_name}}</td>
                                         <td>{{$slider->category->category_name}}</td>
-                                        <td>{{$slider->slide_name}}</td>
+                                        <td><img src="{{asset($slider->slide_image)}}" style="width: 100px;height:40px;" /></td>
                                         <td>@if($slider->status ==1)
                                             <a class="sliderUpdateStatus" href="javascript:void(0)" id="slider-{{$slider->id}}" slider_id="{{$slider->id}}">Active</a>
                                             @else

@@ -21,4 +21,8 @@ class Category extends Model
     {
         return $this->belongsTo('App\Slider','category_id')->select('id','category_name');
     }
+    public function products()
+    {
+        return $this->hasMany('App\Product','category_id');
+    }
 }

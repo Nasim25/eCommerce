@@ -34,15 +34,12 @@
                                                 <label  class="control-label">Select Category</label>
                                                 <select class="form-control" name="category_id" id="category_id" >
                                                     <option value="">Select</option>
-                                                    @foreach($category as $section)
-                                                        <optgroup label="{{ $section['name']}}"></optgroup>
-                                                        @foreach($section['categories'] as $category)
-                                                            <option value="{{$category['id']}}">&nbsp;&nbsp;>>{{$category['category_name']}}{{$category['id']}}</option>
-                                                            @foreach($category['subcategories'] as $subcategory)
-                                                                <option value="{{$subcategory['id']}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>>{{ $subcategory['category_name']}}{{$subcategory['id']}}</option>
+                                                        @foreach($category as $categories)
+                                                        <optgroup label="{{ $categories['category_name']}}"></optgroup>
+                                                            @foreach($categories['subcategories'] as $subcategory)
+                                                                <option value="{{$subcategory['id']}}">&nbsp;&nbsp;&nbsp;&raquo;&nbsp;{{ $subcategory['category_name']}}{{$subcategory['id']}}</option>
                                                             @endforeach
                                                         @endforeach
-                                                    @endforeach
                                                 </select>
                                             </div>
                                             <div class="form-group">
