@@ -131,7 +131,7 @@ class ProductController extends Controller
                     $imagePath = 'public/image/product_image/'.$imageName;
                     // upload image
                     Image::make($image_temp)->save($imagePath);
-                    Image::make($image_temp)->resize(520,600)->save($imagePath);
+                    Image::make($image_temp)->resize(600,300)->save($imagePath);
                     // save image to database
                     $product->main_image = $imagePath;
                 }
@@ -173,7 +173,7 @@ class ProductController extends Controller
         $fitArray = array('Reqular','Slim');
         $occasionArray = array('Casual','formal');
 
-        $category = Section::with('categories')->get();
+        $category = Category::with('subcategories')->where('parent_id',0)->get();
         $category = json_decode(json_encode($category),true);
         // echo "<pre>";print_r($category);die;
         return view('admin.product.add_product')->with(compact('fabricArray','sleeveArray','patternArray','fitArray','occasionArray','category'));

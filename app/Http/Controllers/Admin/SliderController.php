@@ -25,7 +25,25 @@ class SliderController extends Controller
         }
         if($request->post()){
             $data = $request->all();
-
+            $rules = [
+                'slide_name' => 'required|regex:/^[\pL\s\-]+$/u',
+                'slide_firs_line' => 'required',
+                'slide_second_line' => 'required',
+                'slide_third_line' => 'required',
+                'category_id' => 'required',
+                'slide_image' => 'required|image',
+            ];
+            $cusomeMessage =[
+                'slide_name.required'           =>'Name is required',
+                'slide_name.regex'              =>'Valid Name is required',
+                'slide_firs_line.required'      =>'First Lisne is required',
+                'slide_second_line.required'    =>'Second line is required',
+                'slide_third_line.required'     =>'Third line is required',
+                'category_id.required'          =>'Category is required',
+                'slide_image.required'          =>'Valid image is required',
+                'slide_image.image'             =>'Valid image is required'
+            ];
+            $this->validate($request,$rules,$cusomeMessage);
             if($request->hasFile('slide_image'))
             {
                 $image_temp = $request->file('slide_image');
@@ -37,7 +55,7 @@ class SliderController extends Controller
                     // upload image
                     Image::make($image_temp)->save($imagePath);
                     // save image to database
-                    $slider->slide_image = $imageName;
+                    $slider->slide_image = $imagePath;
                 }
             }else{
                 $slider->slide_image = 'default.png';
