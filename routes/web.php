@@ -28,6 +28,9 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin'], function (
             Route::post('category-update-status','CategoryController@category_update_status');
             Route::match(['get','post'],'add-edit-category/{id?}','CategoryController@add_edit_category');
             Route::post('appand-category-lavel','CategoryController@appand_category_lavel');
+            // seb category
+            Route::get('sub-category','CategoryController@subcategory');
+            Route::match(['get','post'],'add-sub-category/{id?}','CategoryController@add_subcategory');
 
             // product
             Route::get('product','ProductController@product_list');

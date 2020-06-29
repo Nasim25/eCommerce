@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    public function category()
+    public function subcategories()
     {
-        return $this->belongsTo('App\Category','category_id')->select('id','category_name');
+        return $this->belongsTo('App\Subcategory');
     }
     public function section()
     {

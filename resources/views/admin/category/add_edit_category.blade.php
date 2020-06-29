@@ -26,9 +26,6 @@
                                                 <label for="state-success" class="control-label">Category Name</label>
                                                 <input type="text" class="form-control" name="category_name" id="category_name" required >
                                             </div>
-                                            <div id="appandCatagoryLavel">
-                                                @include('admin/category/appand_catagory_lavel')
-                                            </div>
                                             <div class="form-group">
                                                 <label for="state-error" class="control-label">Category Discount</label>
                                                 <input type="text" class="form-control" id="category_discount" name="category_discount">
@@ -48,7 +45,7 @@
                                             <div class="form-group">
                                                 <label  class="control-label">Select Section</label>
                                                 <select class="form-control" name="section_id" id="section_id" required>
-                                                    <option value="">Select Section</option>
+                                                    <option value="">Select</option>
                                                     @foreach ($sections as $section)
                                                     <option value="{{$section->id}}">{{$section->name}}</option>
                                                     @endforeach
@@ -57,10 +54,6 @@
                                             <div class="form-group has-feedback">
                                                 <label for="category_image" class="control-label">Category Image</label>
                                                 <input type="file" class="form-control" id="category_image" name="category_image">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="url" class="control-label">Category URL</label>
-                                                <input type="text" class="form-control" id="url" name="url">
                                             </div>
                                             <div class="form-group">
                                                 <label for="meta_title" class="control-label">Meta Title</label>
