@@ -40,6 +40,7 @@
                             <?php $category = "close"; ?>
                             @endif
                             <li class="{{$category}}-item"><a href="{{ url('admin/category') }}">Category</a></li>
+                            <li class="{{$category}}-item"><a href="{{ url('admin/sub-category') }}">Sub Category</a></li>
                             @if(Session::get('page')=='product')
                             <?php $product = "open"; ?>
                             @else

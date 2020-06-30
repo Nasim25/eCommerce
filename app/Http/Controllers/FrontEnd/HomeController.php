@@ -7,6 +7,7 @@ use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Subcategory;
 
 class HomeController extends Controller
 {
@@ -15,10 +16,11 @@ class HomeController extends Controller
         $slides     = Slider::where('status',1)->get();
         $slides     = json_decode(\json_encode($slides),true);
         $products   = Product::orderBy('id','DESC')->get();
-        $categories = Category::get();
-        $categoryProduct = Category::where('parent_id',0)->get();
+        $categories = Category::with('subcategories')->where('status',1)->get();
         
-        $categoryProduct = json_decode(json_encode($categoryProduct),true);
-        return view('frontend.home',compact('slides','products','categories','categoryProduct'));
+        
+        $categories = json_decode(json_encode($categories),true);
+        // echo "<pre>";print_r($categories);die;
+        return view('frontend.home',compact('slides','products','categories'));
     }
 }
