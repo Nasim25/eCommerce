@@ -119,15 +119,15 @@ class CategoryController extends Controller
         return view('admin.category.add_edit_category',compact('sections'));
     }
 
-    public function appand_category_lavel(Request $request)
+    public function appand_subcategory(Request $request)
     {
         if($request->ajax())
         {
             $data = $request->all();
-            $getCategory = Category::with('subcategories')->where(['section_id'=>$data['section_id'],'parent_id'=>0,'status'=>1])->get();
+            $getSubcategory = Subcategory::where(['category_id'=>$data['category_id'],'subcategory_status'=>1])->get();
             // echo "<pre>"; print_r($getCategory);die;
-            $getCategory = json_decode(json_encode($getCategory),true);
-            return view('admin.category.appand_catagory_lavel',compact('getCategory'));
+            $getSubcategory = json_decode(json_encode($getSubcategory),true);
+            return view('admin.product.appand_subcategory',compact('getSubcategory'));
         }
     }
 

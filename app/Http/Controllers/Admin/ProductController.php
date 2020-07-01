@@ -8,7 +8,9 @@ use App\Product;
 use App\Section;
 use App\Category;
 use App\ProductAttribute;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
@@ -16,7 +18,7 @@ class ProductController extends Controller
     public function product_list()
     {
         Session::put('page','product');
-        $products = Product::with(['category','section'])->get();
+        $products = Product::with('category','subcategory')->get();
         $products = json_decode(json_encode($products));
         return view('admin.product.product_list')->with(compact('products'));
     }
@@ -51,7 +53,7 @@ class ProductController extends Controller
             $data = $request->all();
             $rules=[
                 'category_id'   =>  'required',
-                'product_name'  =>  'required|regex:/^[\w-]*$/',
+                'product_name'  =>  'required',
                 'product_code'  =>  'required|regex:/^[\w-]*$/',
                 'product_price' =>  'required|numeric',
                 'product_color' =>   'required|regex:/^[\pL\s\-]+$/u',
@@ -59,7 +61,6 @@ class ProductController extends Controller
             ];
             $customeMessage=[
                 'category_id.required'    =>'Category is required',
-                'product_name.required'       =>'Product name is required',
                 'product_name.reges'       =>'Valid product name is required',
                 'product_code.required'       =>'Product code is required',
                 'product_code.regex'              =>'Valid Product code is required',
@@ -127,8 +128,8 @@ class ProductController extends Controller
                 if($image_temp->isValid()){
                     // Get Image Extention
                     $extention = $image_temp->getClientOriginalExtension();
-                    $imageName = rand(111,999999).'.'.$extention;
-                    $imagePath = 'public/image/product_image/'.$imageName;
+                    $imageName = rand(111,999999).'-'.time().'.'.$extention;
+                    $imagePath = 'public/image/product/main_image/'.$imageName;
                     // upload image
                     Image::make($image_temp)->save($imagePath);
                     Image::make($image_temp)->resize(600,300)->save($imagePath);
@@ -139,10 +140,30 @@ class ProductController extends Controller
                 $product->main_image = 'image/noimage.png';
             }
             // Save Product details in product table
-            $categoryDetails = Category::find($data['category_id']);
-            $product->section_id        = $categoryDetails['section_id'];
+             // product image
+             if($request->hasFile('main_image'))
+             {
+                 $image_temp = $request->file('main_image');
+                 if($image_temp->isValid()){
+                     // Get Image Extention
+                     $extention = $image_temp->getClientOriginalExtension();
+                     $imageName = rand(111,999999).'-'.time().'.'.$extention;
+                     $imagePath = 'public/image/product/'.$imageName;
+                     // upload image
+                     Image::make($image_temp)->save($imagePath);
+                     Image::make($image_temp)->resize(800,800)->save($imagePath);
+                     // save image to database
+                     $product->view_image = $imagePath;
+                 }
+             }else{
+                 $product->view_image = 'image/view_noimage.png';
+             }
+             // Save Product details in product table
+            
+            $product->subcategory_id    = $data['subcategory_id'];
             $product->category_id       = $data['category_id'];
             $product->product_name      = $data['product_name'];
+            $product->product_slug      = Str::slug($data['product_name']);
             $product->product_code      = $data['product_code'];
             $product->product_color     = $data['product_color'];
             $product->product_price     = $data['product_price'];
@@ -173,8 +194,7 @@ class ProductController extends Controller
         $fitArray = array('Reqular','Slim');
         $occasionArray = array('Casual','formal');
 
-        $category = Category::with('subcategories')->where('parent_id',0)->get();
-        $category = json_decode(json_encode($category),true);
+        $category = Category::where('status',1)->get();
         // echo "<pre>";print_r($category);die;
         return view('admin.product.add_product')->with(compact('fabricArray','sleeveArray','patternArray','fitArray','occasionArray','category'));
         
@@ -202,7 +222,7 @@ class ProductController extends Controller
             return redirect()->back();
         }
         $productDetails = Product::where('id',$id)->first();
-        $attributeDetails = ProductAttribute::where('product_id',$productDetails->id)->get();
+        $attributeDetails = ProductAttribute::get();
         return view('admin.product.attributes',compact('productDetails','attributeDetails'));
     }
 

@@ -1,5 +1,5 @@
 @extends('layouts.admin_layouts.admin_layout')
-@section('admin_title','Section List');
+@section('admin_title','Product');
 @section('content')
 
 <div class="content">
@@ -26,10 +26,10 @@
                                         <th>ID</th>
                                         <th>Product Name</th>
                                         <th>Product Code</th>
-                                        <th>Product Color</th>
-                                        <th>Product Image</th>
+                                        <th>Qty</th>
                                         <th>Category</th>
-                                        <th>Section</th>
+                                        <th>Sub-Category</th>
+                                        <th>Product Image</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -40,11 +40,12 @@
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $product->product_name }}</td>
                                         <td>{{ $product->product_code }}</td>
-                                        <td>{{ $product->product_color }}</td>
+                                        <td>{{ $product->product_code }}</td>
+                                        <td>{{ $product->category->category_name }}</td>
+                                        <td>{{ $product->subcategory->subcategory_name }}</td>
                                         <td>
                                         <center><img src="{{ asset($product->main_image) }}" style="width:100px;height:100px;" /></center></td>
-                                        <td>{{ $product->category->category_name }}</td>
-                                        <td>{{ $product->section->name }}</td>
+                                        
                                         <td>@if($product->status ==1)
                                             <a class="productUpdateStatus" href="javascript:void(0)" id="product-{{$product->id}}" product_id="{{$product->id}}">Active</a>
                                             @else

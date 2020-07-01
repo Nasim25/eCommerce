@@ -3,7 +3,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Harrier Home Page</title>
+<title>@yield('frontend_title')</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Default Description">
 <meta name="keywords" content="fashion, store, E-commerce">
@@ -25,6 +25,7 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700,800' rel='stylesheet' type='text/css'>
 <link href="https://fonts.googleapis.com/css?family=Teko:300,400,500,600,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Saira+Condensed:300,400,500,600,700,800" rel="stylesheet">
+@yield('fontend_css')
 </head>
 <body>
 <div id="page">
@@ -55,6 +56,8 @@
 <script type="text/javascript" src="{{asset('frontend/')}}/js/owl.carousel.min.js"></script> 
 <script type="text/javascript" src="{{asset('frontend/')}}/js/jquery.mobile-menu.min.js"></script> 
 <script src="{{asset('frontend/')}}/js/countdown.js"></script> 
+
+
 <script>
         jQuery(document).ready(function(){
             jQuery('#rev_slider_4').show().revolution({
@@ -148,6 +151,8 @@
       var iid1 = "countbox_1";
       CountBack_slider(gsecs1, "countbox_1", 1);
     </script>
+
+    @yield('fontend_js')
 </body>
 
 </html>
