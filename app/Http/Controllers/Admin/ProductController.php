@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function product_list()
     {
         Session::put('page','product');
-        $products = Product::with(['category','section'])->get();
+        $products = Product::with('category','subcategory')->get();
         $products = json_decode(json_encode($products));
         return view('admin.product.product_list')->with(compact('products'));
     }
@@ -139,8 +139,8 @@ class ProductController extends Controller
                 $product->main_image = 'image/noimage.png';
             }
             // Save Product details in product table
-            $categoryDetails = Category::find($data['category_id']);
-            $product->section_id        = $categoryDetails['section_id'];
+            
+            $product->subcategory_id    = $data['subcategory_id'];
             $product->category_id       = $data['category_id'];
             $product->product_name      = $data['product_name'];
             $product->product_code      = $data['product_code'];
@@ -173,8 +173,7 @@ class ProductController extends Controller
         $fitArray = array('Reqular','Slim');
         $occasionArray = array('Casual','formal');
 
-        $category = Category::with('subcategories')->where('parent_id',0)->get();
-        $category = json_decode(json_encode($category),true);
+        $category = Category::where('status',1)->get();
         // echo "<pre>";print_r($category);die;
         return view('admin.product.add_product')->with(compact('fabricArray','sleeveArray','patternArray','fitArray','occasionArray','category'));
         
@@ -202,7 +201,7 @@ class ProductController extends Controller
             return redirect()->back();
         }
         $productDetails = Product::where('id',$id)->first();
-        $attributeDetails = ProductAttribute::where('product_id',$productDetails->id)->get();
+        $attributeDetails = ProductAttribute::get();
         return view('admin.product.attributes',compact('productDetails','attributeDetails'));
     }
 

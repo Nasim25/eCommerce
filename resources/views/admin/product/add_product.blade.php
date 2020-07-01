@@ -35,10 +35,8 @@
                                                 <select class="form-control" name="category_id" id="category_id" >
                                                     <option value="">Select</option>
                                                         @foreach($category as $categories)
-                                                        <optgroup label="{{ $categories['category_name']}}"></optgroup>
-                                                            @foreach($categories['subcategories'] as $subcategory)
-                                                                <option value="{{$subcategory['id']}}">&nbsp;&nbsp;&nbsp;&raquo;&nbsp;{{ $subcategory['category_name']}}{{$subcategory['id']}}</option>
-                                                            @endforeach
+                                                        
+                                                                <option value="{{$categories->id}}">{{$categories->category_name}}</option>
                                                         @endforeach
                                                 </select>
                                             </div>
@@ -98,6 +96,9 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="panel-content">
+                                            <div id="appandCatagoryLavel">
+                                            @include('admin.product.appand_subcategory')
+                                            </div>
                                             <div class="form-group">
                                                 <label for="state-success" class="control-label">Product Code</label>
                                                 <input type="text" class="form-control" name="product_code" id="product_code"  >

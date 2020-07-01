@@ -66,19 +66,19 @@ $(document).ready(function(){
 
     // appand category lavel
 
-    // $('#section_id').change(function(){
-    //     var section_id = $(this).val();
-    //     $.ajax({
-    //         type:'post',
-    //         url: '/eCommerce/admin/appand-category-lavel',
-    //         data:{section_id:section_id},
-    //         success:function(resp){
-    //             $('#appandCatagoryLavel').html(resp);
-    //         },error:function(){
-    //             alert('error');
-    //         }
-    //     });
-    // });
+    $('#category_id').change(function(){
+        var category_id = $(this).val();
+        $.ajax({
+            type:'post',
+            url: '/eCommerce/admin/appand-subcategory',
+            data:{category_id:category_id},
+            success:function(resp){
+                $('#appandCatagoryLavel').html(resp);
+            },error:function(){
+                alert('error');
+            }
+        });
+    });
 
     // product status
     $('.productUpdateStatus').click(function(){

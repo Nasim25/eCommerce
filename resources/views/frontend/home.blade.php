@@ -139,16 +139,7 @@
             @if(!empty($category['subcategories']))
                 @foreach($category['subcategories'] as $subcategory)
 
-                    <?php 
-                        foreach($subcategory as $s)
-                        {
-                            $adfdf[]=DB::table('products')->where('category_id',$s)->get();
-                            
-                        }
-                   ?>
                     
-               @endforeach
-                    @foreach($adfdf as $sfsdfs)
                 
                 <section class=" wow bounceInUp animated">
                     <div class="hot_deals slider-items-products container">
