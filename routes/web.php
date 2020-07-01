@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace'=>'FrontEnd'],function(){
     Route::get('/','HomeController@home');
+    Route::get('/product-view/{product}','ProductController@product_view');
 });
 
 Auth::routes();
