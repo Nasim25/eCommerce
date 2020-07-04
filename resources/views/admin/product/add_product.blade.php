@@ -32,7 +32,7 @@
                                         <div class="panel-content">
                                             <div class="form-group">
                                                 <label  class="control-label">Select Category</label>
-                                                <select class="form-control" name="category_id" id="category_id" >
+                                                <select class="form-control" name="category_id" id="category_id" required>
                                                     <option value="">Select</option>
                                                         @foreach($category as $categories)
                                                         
@@ -42,43 +42,22 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="state-success" class="control-label">Product Name</label>
-                                                <input type="text" class="form-control" name="product_name" id="product_name"  >
+                                                <input type="text" class="form-control" name="product_name" id="product_name"  required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="state-success" class="control-label">Product Price</label>
-                                                <input type="text" class="form-control" name="product_price" id="product_price"  >
+                                                <input type="text" class="form-control" name="product_price" id="product_price"  required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="state-success" class="control-label">Product Discount</label>
                                                 <input type="text" class="form-control" name="product_descount" id="product_descount"  >
                                             </div>
                                             
-                                            <div class="form-group has-feedback">
-                                                <label for="category_image" class="control-label">Product Video</label>
-                                                <input type="file" class="form-control" id="product_video" name="product_video">
-                                            </div>
                                             <div class="form-group">
                                                 <label for="description" class="control-label">Product Discription</label>
                                                 <textarea class="form-control" name="description" rows="3" id="description" placeholder="Write a comment" maxlength="100"></textarea>
                                             </div>
-                                            <div class="form-group">
-                                                <label  class="control-label">Select Sleeve</label>
-                                                <select class="form-control" name="sleeve" id="sleeve" >
-                                                    <option value="">Select Sleeve</option>
-                                                    @foreach($sleeveArray as $sleeves)
-                                                    <option value="{{$sleeves}}">{{$sleeves}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label  class="control-label">Select Pattern</label>
-                                                <select class="form-control" name="pattern" id="pattern" >
-                                                    <option value="">Select Pattern</option>
-                                                    @foreach($patternArray as $patterns)
-                                                    <option value="{{$patterns}}">{{$patterns}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
+                                            
                                             <div class="form-group">
                                                 <label for="meta_description" class="control-label">Meta Discription</label>
                                                 <textarea class="form-control" rows="3" name="meta_description" id="meta_description" placeholder="Write a comment" maxlength="100"></textarea>
@@ -96,56 +75,40 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="panel-content">
-                                            <div id="appandCatagoryLavel">
+                                            <div  class="form-group" id="appandCatagoryLavel">
                                             @include('admin.product.appand_subcategory')
                                             </div>
+
+                                            <div class="form-group">
+                                                <label  class="control-label">Brand</label>
+                                                <select class="form-control" name="brand_id" id="brand_id" required>
+                                                    <option value="">Select</option>
+                                                    @foreach($brands as $brand)
+                                                    <option value="{{$brand->id}}">{{$brand->brand_name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
                                             <div class="form-group">
                                                 <label for="state-success" class="control-label">Product Code</label>
                                                 <input type="text" class="form-control" name="product_code" id="product_code"  >
                                             </div>
+                                            
                                             <div class="form-group">
-                                                <label for="state-success" class="control-label">Product Color</label>
-                                                <input type="text" class="form-control" name="product_color" id="product_color"  >
+                                                <label  class="control-label">Color</label>
+                                                <select class="form-control" name="product_color[]" id="product_color" >
+                                                    <option value="">Select</option>
+                                                    @foreach($colors as $color)
+                                                    <option value="{{$color}}">{{$color}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="state-success" class="control-label">Product Weight</label>
-                                                <input type="text" class="form-control" name="product_weight" id="product_weight"  >
-                                            </div>
+                                            
                                             <div class="form-group has-feedback">
                                                 <label for="category_image" class="control-label">Product Image</label>
                                                 <input type="file" class="form-control" id="main_image" name="main_image">
                                             </div>
-                                            <div class="form-group">
-                                                <label for="meta_title" class="control-label">Wash Care</label>
-                                                <textarea class="form-control" rows="3" id="wash_care" name="wash_care" placeholder="Write a comment" maxlength="100"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label  class="control-label">Select Fabric</label>
-                                                <select class="form-control" name="fabric" id="fabric" >
-                                                    <option value="">Select</option>
-                                                    @foreach($fabricArray as $fabrics)
-                                                    <option value="{{$fabrics}}">{{$fabrics}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label  class="control-label">Select Fit</label>
-                                                <select class="form-control" name="fit" id="fit" >
-                                                    <option value="">Select</option>
-                                                    @foreach($fitArray as $fits)
-                                                    <option value="{{$fits}}">{{$fits}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label  class="control-label">Select Occasion</label>
-                                                <select class="form-control" name="occassion" id="occassion" >
-                                                    <option value="">Select</option>
-                                                    @foreach($occasionArray as $occasions)
-                                                    <option value="{{$occasions}}">{{$occasions}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
+                                        
                                             <div class="form-group">
                                                 <label  class="control-label">Featured Item</label>
                                                 <select class="form-control" name="is_featured" id="is_featured" >

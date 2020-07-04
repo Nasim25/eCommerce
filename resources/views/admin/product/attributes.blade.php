@@ -13,43 +13,17 @@
    </div>
    <div class="panel panel-default">
         <div class="panel-heading">Add Product Attributes</div>
-        <form action="{{url('/admin/add-attributes/'.$productDetails->id)}}" method="post">@csrf
+        <form method="post" action="{{url('/admin/add-attributes/'.$productDetails->id)}}" enctype="multipart/form-data">@csrf   
         <div class="panel-body">
-            
                 <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Product Name</label>
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Product Image</label>
                     <div class="col-sm-10">
-                    <input type="text" readonly value="{{$productDetails->product_name}}" class="form-control-plaintext" desabled>
-                    <input type="hidden" value="{{$productDetails->id}}" name="product_id">
+                    <input type="file" class="form-control" id="product_image" name="product_image">
+                    <input type="hidden" name="product_id" value="{{$productDetails->id}}" >
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Product Code</label>
-                    <div class="col-sm-10">
-                    <input type="text" readonly value="{{$productDetails->product_code}}" class="form-control-plaintext" id="staticEmail" value="email@example.com">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Product Color</label>
-                    <div class="col-sm-10">
-                    <input type="text" readonly value="{{$productDetails->product_color}}" class="form-control-plaintext" id="staticEmail" value="email@example.com">
-                    </div>
-                </div>
-                <div class="field_wrapper">
-                    
-                    <div class="col-sm-10">
-                        <input type="text" name="sku[]" placeholder="sku" id="sku" style="width:120px;margin:5px;" />
-                        <input type="text" name="size[]" placeholder="size" id="size" style="width:120px;margin:5px;" />
-                        <input type="text" name="price[]" placeholder="price" id="price" style="width:120px;margin:5px;" />
-                        <input type="text" name="stock[]" placeholder="stock" id="stock" style="width:120px;margin:5px;" />
-                        <a href="javascript:void(0);" class="add_button" title="Add field">Add</a>
-                    </div>
-                </div>
-                
-               
-            
-        </div>
-        <div class="panel-footer"><input type="submit" value="Add Attributes"></div>
+            </div>
+            <div class="panel-footer"><input type="submit" value="Add Image"></div>
         </form>
     </div>
 
@@ -61,24 +35,24 @@
         <table class="table table-bordered">
             <thead>
                 <th>Id</th>
-                <th>SKU</th>
-                <th>Size</th>
-                <th>Price</th>
-                <th>QTY</th>
+                <th>Image</th>
+                <th>Status</th>
                 <th>Action</th>
             </thead>
             <tbody>
-                @foreach($attributeDetails as $attribute)
+               @foreach($productDetails->productImages as $key =>$image)
                 <tr>
-                    <td>{{$attribute->id}}</td>
-                    <td>{{$attribute->sku}}</td>
-                    <td>{{$attribute->size}}</td>
-                    <td>{{$attribute->price}}</td>
-                    <td>{{$attribute->stock}}</td>
-                    <td><a class="confirmDelete" record="attributes" recordid="{{$attribute->id}}" href="javascript:void(0)">delete</a></td>
-                    
+                    <td>{{$key + 1}}</td>
+                    <td><img src="{{asset($image->product_image)}}" style="width:100px;height:100px;"></td>
+                    <td>@if($image->status ==1)
+                        <a class="productUpdateStatus" href="javascript:void(0)" id="image-{{$image->id}}" product_id="{{$image->id}}">Active</a>
+                          @else
+                          <a class="productUpdateStatus" href="javascript:void(0)" id="image-{{$image->id}}" product_id="{{$image->id}}">Inactive</a>
+                        @endif
+                     </td>
+                     <td></td>
                 </tr>
-                @endforeach
+               @endforeach
             </tbody>
         </table>
     </div>

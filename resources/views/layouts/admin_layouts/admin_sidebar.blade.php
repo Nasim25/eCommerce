@@ -19,7 +19,7 @@
                     @endif
                     <li class="{{$active}}-item"><a href="{{ url('admin/deshboard')}}"><i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span></a></li>
                     
-                    @if(Session::get('page') == 'sections' || Session::get('page') == "category" || Session::get('page') == 'product')
+                    @if(Session::get('page') == 'sections' || Session::get('page') == "category" || Session::get('page') == 'product' || Session::get('page') == "brand" || Session::get('page') == 'subcategory')
                         <?php $active = "open"; ?>
                     @else
                     <?php $active = "close"; ?>
@@ -40,7 +40,18 @@
                             <?php $category = "close"; ?>
                             @endif
                             <li class="{{$category}}-item"><a href="{{ url('admin/category') }}">Category</a></li>
-                            <li class="{{$category}}-item"><a href="{{ url('admin/sub-category') }}">Sub Category</a></li>
+                            @if(Session::get('page')=='subcategory')
+                            <?php $subcategory = "open"; ?>
+                            @else
+                            <?php $subcategory = "close"; ?>
+                            @endif
+                            <li class="{{$subcategory}}-item"><a href="{{ url('admin/sub-category') }}">Sub Category</a></li>
+                            @if(Session::get('page')=='brand')
+                            <?php $brand = "open"; ?>
+                            @else
+                            <?php $brand = "close"; ?>
+                            @endif
+                            <li class="{{$brand}}-item"><a href="{{ url('admin/brand') }}">Brand</a></li>
                             @if(Session::get('page')=='product')
                             <?php $product = "open"; ?>
                             @else

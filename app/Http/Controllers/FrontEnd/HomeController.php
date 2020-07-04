@@ -15,7 +15,7 @@ class HomeController extends Controller
     {
         $slides     = Slider::where('status',1)->get();
         $slides     = json_decode(\json_encode($slides),true);
-        $products   = Product::orderBy('id','DESC')->get();
+        $products   = Product::where('status',1)->orderBy('id','DESC')->get();
         $categories = Category::with('products')->where('status',1)->get();
         
         

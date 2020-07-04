@@ -24,6 +24,8 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin'], function (
             Route::get('section','SectionController@section_list');
             Route::post('section-update-status','SectionController@section_update_status');
 
+            // brand
+            Route::get('brand','BrandController@index');
             // category
             Route::get('category','CategoryController@category_list');
             Route::post('category-update-status','CategoryController@category_update_status');

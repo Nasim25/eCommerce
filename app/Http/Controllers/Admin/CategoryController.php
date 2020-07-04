@@ -133,6 +133,7 @@ class CategoryController extends Controller
 
     public function subcategory(Request $request)
     {
+        Session::put('page','subcategory');
         $subcategories = Subcategory::get();
         return view('admin.subcategory.subcategory',compact('subcategories'));
     }

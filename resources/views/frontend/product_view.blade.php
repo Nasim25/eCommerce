@@ -3,7 +3,7 @@
 @section('front_section')
     <div class="content">
       
-    <div class="page-heading">
+    <!-- <div class="page-heading">
         <div class="breadcrumbs">
             <div class="container">
                 <div class="row">
@@ -21,7 +21,7 @@
         <div class="page-title">
             <h2>PRODUCT Detail</h2>
         </div>
-    </div>
+    </div> -->
     <!-- BEGIN Main Container -->
     <div class="main-container col1-layout wow bounceInUp animated">
         <div class="main">
@@ -46,16 +46,12 @@
                             <div id="gallery_01" class="product-flexslider hidden-buttons product-img-thumb">
                                 <div class="slider-items slider-width-col4 block-content">
                                     
-                                <div class="more-views-items"> <a href="#" data-image="{{asset('frontend/')}}/products-images/p36.jpg" data-zoom-image="{{asset('frontend/')}}/products-images/p36.jpg"> <img id="product-zoom0"  src="{{asset('frontend/')}}/products-images/p36.jpg" alt="product-image"/> </a></div>
-                                <div class="more-views-items"> <a href="#" data-image="{{asset('frontend/')}}/products-images/p36.jpg" data-zoom-image="{{asset('frontend/')}}/products-images/p36.jpg"> <img id="product-zoom0"  src="{{asset('frontend/')}}/products-images/p36.jpg" alt="product-image"/> </a></div>
-
                                 
+                                @foreach($product->productImages as $pImage)
 
-                                <div class="more-views-items"> <a href="#" data-image="{{asset('frontend/')}}/products-images/p42.jpg" data-zoom-image="{{asset('frontend/')}}/products-images/p42.jpg"> <img id="product-zoom2"  src="{{asset('frontend/')}}/products-images/p42.jpg" alt="product-image"/> </a></div>
+                                <div class="more-views-items"> <a href="#" data-image="{{asset($pImage->product_image)}}" data-zoom-image="{{asset($pImage->product_image)}}"> <img id="product-zoom3"  src="{{asset($pImage->product_image)}}" alt="product-image"/> </a> </div>
+                                @endforeach
 
-                                <div class="more-views-items"> <a href="#" data-image="{{asset('frontend/')}}/products-images/p33.jpg" data-zoom-image="{{asset('frontend/')}}/products-images/p33.jpg"> <img id="product-zoom3"  src="{{asset('frontend/')}}/products-images/p33.jpg" alt="product-image"/> </a> </div>
-
-                                <div class="more-views-items"> <a href="#" data-image="{{asset('frontend/')}}/products-images/p38.jpg" data-zoom-image="{{asset('frontend/')}}/products-images/p38.jpg"> <img id="product-zoom4"  src="{{asset('frontend/')}}/products-images/p38.jpg" alt="product-image" /> </a></div>
                                 </div>
                             </div>
                             </div>
@@ -67,20 +63,20 @@
                     <!-- For version 3 -->
                     <div class="product-shop col-lg- col-sm-7 col-xs-12">
                         
-                        <div class="brand">XPERIA</div>
+                        <div class="brand">UV</div>
                         <div class="product-name">
-                        <h1>Gorgeous Mercedes-Benz E-Class All-Terrain Luxury </h1>
+                        <h1>{{$product->product_name}}</h1>
                         </div>
                         <div class="ratings">
                         <div class="rating-box">
                             <div style="width:60%" class="rating"></div>
                         </div>
-                        <p class="rating-links"> <a href="#">1 Review</a> <span class="separator">|</span> <a href="#">Add Your Review</a> </p>
+                        <p class="rating-links"> <a href="#">1 Review</a>  </p>
                         </div>
                         <div class="price-block">
                         <div class="price-box">
                         <p class="availability in-stock"><span>In Stock</span></p>
-                            <p class="special-price"> <span class="price-label">Special Price</span> <span id="product-price-48" class="price"> $309.99 </span> </p>
+                            <p class="special-price"> <span class="price-label">Special Price</span> <span id="product-price-48" class="price"> Tk {{$product->product_price}} </span> </p>
                             
                             
                         </div>
@@ -135,10 +131,7 @@
             <div class="product-collateral container">
                 <ul id="product-detail-tab" class="nav nav-tabs product-tabs">
                 <li class="active"> <a href="#product_tabs_description" data-toggle="tab"> Product Description </a> </li>
-                <li><a href="#product_tabs_tags" data-toggle="tab">Tags</a></li>
                 <li> <a href="#reviews_tabs" data-toggle="tab">Reviews</a> </li>
-                <li> <a href="#product_tabs_custom" data-toggle="tab">Custom Tab</a> </li>
-                <li> <a href="#product_tabs_custom1" data-toggle="tab">Custom Tab1</a> </li>
                 </ul>
                 <div id="productTabContent" class="tab-content">
                 <div class="tab-pane fade in active" id="product_tabs_description">
@@ -147,48 +140,31 @@
                     <p> Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Vivamus adipiscing nisl ut dolor dignissim semper. Nulla luctus malesuada tincidunt. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer enim purus, posuere at ultricies eu, placerat a felis. Suspendisse aliquet urna pretium eros convallis interdum. Quisque in arcu id dui vulputate mollis eget non arcu. Aenean et nulla purus. Mauris vel tellus non nunc mattis lobortis.</p>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="product_tabs_tags">
-                    <div class="box-collateral box-tags">
-                    <div class="tags">
-                        <form id="addTagForm" action="#" method="get">
-                        <div class="form-add-tags">
-                            <label for="productTagName">Add Tags:</label>
-                            <div class="input-box">
-                            <input class="input-text" name="productTagName" id="productTagName" type="text">
-                            <button type="button" title="Add Tags" class=" button btn-add" onClick="submitTagForm()"> <span>Add Tags</span> </button>
-                            </div>
-                            <!--input-box--> 
-                        </div>
-                        </form>
-                    </div>
-                    <!--tags-->
-                    <p class="note">Use spaces to separate tags. Use single quotes (') for phrases.</p>
-                    </div>
-                </div>
+                
                 <div class="tab-pane fade" id="reviews_tabs">
                     <div class="woocommerce-Reviews">
-    <div>
-    <h2 class="woocommerce-Reviews-title">2 reviews for <span>Bacca Bucci Men's Running Shoes</span></h2>
-    <ol class="commentlist">
-    <li class="comment">
-    <div>
-    <img alt="" src="images/member1.png" class="avatar avatar-60 photo">
-    <div class="comment-text">
-    <div class="ratings">
-        <div class="rating-box">
-            <div style="width:100%" class="rating"></div>
-        </div>
-                        
-    </div>
-    <p class="meta">
-    <strong>John Doe</strong> 
-    <span>–</span> April 19, 2018
-    </p>
-    <div class="description"><p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    <p>Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis lorem ut libero malesuada feugiat. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.</p>
-    </div>
-    </div>
-    </div>
+                <div>
+                <h2 class="woocommerce-Reviews-title">2 reviews for <span>Bacca Bucci Men's Running Shoes</span></h2>
+                <ol class="commentlist">
+                <li class="comment">
+                <div>
+                <img alt="" src="images/member1.png" class="avatar avatar-60 photo">
+                <div class="comment-text">
+                <div class="ratings">
+                    <div class="rating-box">
+                        <div style="width:100%" class="rating"></div>
+                    </div>
+                                    
+                </div>
+                <p class="meta">
+                <strong>John Doe</strong> 
+                <span>–</span> April 19, 2018
+                </p>
+                <div class="description"><p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p>Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis lorem ut libero malesuada feugiat. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.</p>
+                </div>
+                </div>
+                </div>
     </li><!-- #comment-## -->
     <li class="comment">
     <div>
@@ -200,10 +176,10 @@
                         </div>
                         
                         </div>
-    <p class="meta">
-    <strong>Stephen Smith</strong> <span>–</span> June 02, 2018
-    </p>
-    <div class="description"><p>Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p class="meta">
+                <strong>Stephen Smith</strong> <span>–</span> June 02, 2018
+                </p>
+            <div class="description"><p>Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
     </div>
     </div>
     </div>
