@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Image;
 use Session;
+use App\Brand;
 use App\Product;
 use App\Section;
 use App\Category;
@@ -12,6 +13,8 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
+use App\ProductColor;
+use App\ProductImage;
 
 class ProductController extends Controller
 {
@@ -56,7 +59,6 @@ class ProductController extends Controller
                 'product_name'  =>  'required',
                 'product_code'  =>  'required|regex:/^[\w-]*$/',
                 'product_price' =>  'required|numeric',
-                'product_color' =>   'required|regex:/^[\pL\s\-]+$/u',
                 'main_image'    =>  'image',
             ];
             $customeMessage=[
@@ -66,33 +68,12 @@ class ProductController extends Controller
                 'product_code.regex'              =>'Valid Product code is required',
                 'product_price.required'      =>'Product Price is required',
                 'product_price.numeric'      =>'Valid Product Price is required',
-                'product_color.required'      =>'Product color is required',
-                'product_color.regex'      =>'Valid Product color is required',
                 'main_image.image'      =>'Valid Product image is required',
             ];
             $this->validate($request,$rules,$customeMessage);
             
 
-            if(empty($data['fabric']))
-            {
-                $data['fabric'] = "";
-            }
-            if(empty($data['pattern']))
-            {
-                $data['pattern'] = "";
-            }
-            if(empty($data['sleeve']))
-            {
-                $data['sleeve'] = "";
-            }
-            if(empty($data['fit']))
-            {
-                $data['fit'] = "";
-            }
-            if(empty($data['occassion']))
-            {
-                $data['occassion'] = "";
-            }
+            
             if(empty($data['meta_title']))
             {
                 $data['meta_title'] = "";
@@ -104,14 +85,6 @@ class ProductController extends Controller
             if(empty($data['meta_keywords']))
             {
                 $data['meta_keywords'] = "";
-            }
-            if(empty($data['wash_care']))
-            {
-                $data['wash_care'] = "";
-            }
-            if(empty($data['product_weight']))
-            {
-                $data['product_weight'] = 0;
             }
             if(empty($data['description']))
             {
@@ -162,21 +135,13 @@ class ProductController extends Controller
             
             $product->subcategory_id    = $data['subcategory_id'];
             $product->category_id       = $data['category_id'];
+            $product->brand_id          = $data['brand_id'];
             $product->product_name      = $data['product_name'];
             $product->product_slug      = Str::slug($data['product_name']);
             $product->product_code      = $data['product_code'];
-            $product->product_color     = $data['product_color'];
             $product->product_price     = $data['product_price'];
             $product->product_descount  = $data['product_descount'];
-            $product->product_weight    = $data['product_weight'];
-            $product->product_video     = "";
             $product->description       = $data['description'];
-            $product->wash_care         = $data['wash_care'];
-            $product->fabric            = $data['fabric'];
-            $product->pattern           = $data['pattern'];
-            $product->sleeve            = $data['sleeve'];
-            $product->fit               = $data['fit'];
-            $product->occassion         = $data['occassion'];
             $product->meta_title        = $data['meta_title'];
             $product->meta_description  = $data['meta_description'];
             $product->meta_keywords     = $data['meta_keywords'];
@@ -184,46 +149,63 @@ class ProductController extends Controller
             $product->status            = 1;
             $product->save();
 
+            if(!empty($data['product_color'])){
+                foreach($data['product_color'] as $color)
+                {
+                    $colors = new ProductColor();
+                    $colors->product_id = $product->id;
+                    $colors->color = $color;
+                    $colors->save();
+                }
+            }
+            
             Session::flash('success_message','Product Added Successfully!');
             return redirect('admin/product');
         }
 
-        $fabricArray = array('Cottor','Polyester','Wool');
-        $sleeveArray = array('full Sleeve','Half Sleeve','Short Sleeve','Sleeveless');
-        $patternArray = array('Checked','Plain','Printed','Self','Solid');
-        $fitArray = array('Reqular','Slim');
-        $occasionArray = array('Casual','formal');
+        $colors = array('Black','White','Red');
 
         $category = Category::where('status',1)->get();
+        $brands = Brand::where('status',1)->get();
         // echo "<pre>";print_r($category);die;
-        return view('admin.product.add_product')->with(compact('fabricArray','sleeveArray','patternArray','fitArray','occasionArray','category'));
+        return view('admin.product.add_product')->with(compact('category','brands','colors'));
         
     }
 
     public function add_attributes(Request $request,$id=NULL)
     {
+        
         if($request->isMethod('post'))
         {
+            $product_image = new ProductImage();
             $data = $request->all();
-            // echo "<pre>";print_r($data);die;
-            foreach($data['sku'] as $key => $value)
+            if($request->hasFile('product_image'))
             {
-                if(!empty($value))
-                {
-                    $attribute = new ProductAttribute();
-                    $attribute->product_id = $data['product_id'];
-                    $attribute->sku = $value;
-                    $attribute->size = $data['size'][$key];
-                    $attribute->price = $data['price'][$key];
-                    $attribute->stock = $data['stock'][$key];
-                    $attribute->save();
+                $image_temp = $request->file('product_image');
+                if($image_temp->isValid()){
+                    // Get Image Extention
+                    $extention = $image_temp->getClientOriginalExtension();
+                    $imageName = rand(111,999999).'-'.time().'.'.$extention;
+                    $imagePath = 'public/image/product/product_image/'.$imageName;
+                    // upload image
+                    Image::make($image_temp)->save($imagePath);
+                    Image::make($image_temp)->resize(800,800)->save($imagePath);
+                    // save image to database
+                    
+                    $product_image->product_image = $imagePath;
                 }
+            }else{
+                $product_image->product_image = 'image/noimage.png';
             }
+
+            $product_image->product_id = $data['product_id'];
+            $product_image->status = 1;
+            $product_image->save();
             return redirect()->back();
         }
-        $productDetails = Product::where('id',$id)->first();
-        $attributeDetails = ProductAttribute::get();
-        return view('admin.product.attributes',compact('productDetails','attributeDetails'));
+
+        $productDetails = Product::with('productImages')->where('id',$id)->first();
+        return view('admin.product.attributes',compact('productDetails'));
     }
 
     public function delete_attributes($id)

@@ -26,7 +26,7 @@ class SliderController extends Controller
         if($request->post()){
             $data = $request->all();
             $rules = [
-                'slide_name' => 'required|regex:/^[\pL\s\-]+$/u',
+                'slide_name' => 'required',
                 'slide_firs_line' => 'required',
                 'slide_second_line' => 'required',
                 'slide_third_line' => 'required',
@@ -35,7 +35,6 @@ class SliderController extends Controller
             ];
             $cusomeMessage =[
                 'slide_name.required'           =>'Name is required',
-                'slide_name.regex'              =>'Valid Name is required',
                 'slide_firs_line.required'      =>'First Lisne is required',
                 'slide_second_line.required'    =>'Second line is required',
                 'slide_third_line.required'     =>'Third line is required',
@@ -71,7 +70,7 @@ class SliderController extends Controller
 
             return redirect(url('admin/slider'));
         }
-        $getCategory = Category::with('subcategories')->where(['parent_id'=>0,'status'=>1])->get();
+        $getCategory = Category::with('subcategories')->get();
         $getCategory = json_decode(json_encode($getCategory),true);
         return view('admin.slider.slider_add')->with(compact('getCategory'));
         

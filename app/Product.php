@@ -18,4 +18,8 @@ class Product extends Model
     {
         return $this->belongsTo('App\Section','section_id')->select('id','name');
     }
+    public function productImages()
+    {
+        return $this->hasMany('App\ProductImage');
+    }
 }

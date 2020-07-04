@@ -37,9 +37,6 @@
                                                     <option value="0">Select</option>
                                                     @foreach($getCategory as $category)
                                                         <option value="{{$category['id']}}" > {{$category['category_name']}}</option>
-                                                        @foreach($category['subcategories'] as $subcategory)
-                                                        <option value="{{$category['id']}}">&nbsp;&raquo;&nbsp;{{$subcategory['category_name']}}</option>
-                                                        @endforeach
                                                     @endforeach
                                                 </select>
                                             </div>
