@@ -4,7 +4,7 @@
         <div id="header">
           <div class="header-container">
             <div class="header-logo"> <a href="{{url('/')}}" title="Car HTML" class="logo">
-              <div><img src="{{asset('frontend/')}}/images/logo.png" alt="Car Store"></div>
+              <div><img src="{{asset('public/TECH.png')}}" style="margin-top: -19px;" alt="Car Store"></div>
               </a> </div>
             <div class="header__nav">
               <div class="header-banner">

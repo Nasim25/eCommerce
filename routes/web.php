@@ -9,6 +9,19 @@ Route::group(['namespace'=>'FrontEnd'],function(){
 
     Route::post('add-to-cart','CartController@addToCart');
     Route::get('cart','CartController@cart')->name('cart');
+    Route::get('cart-item-delete/{rowId}','CartController@cart_item_delete');
+    Route::post('cart-item-update','CartController@cart_item_update');
+    Route::get('checkout','CartController@checkout');
+
+    Route::get('customer-login','LoginController@index')->name('customer.login');
+    Route::post('customer-login','LoginController@login');
+
+      Route::group(['middleware'=>['auth']],function(){
+        Route::get('user-deshboard','DeshboardController@deshboard');
+        Route::get('shipping','DeshboardController@shipping')->name('shipping');
+        Route::post('shipping-store','DeshboardController@shipping_store');
+        Route::get('payment','DeshboardController@payment')->name('payment');
+    });
 });
 
 Auth::routes();
