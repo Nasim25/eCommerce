@@ -6,7 +6,7 @@
         <div class="main">
             <div class="cart wow bounceInUp animated">
                 <div class="table-responsive shopping-cart-tbl  container">
-                    <form action="#" method="post">
+                    
                         <input name="form_key" type="hidden" value="EPYwQxF6xoWcjLUr">
                         <fieldset>
                             <table id="shopping-cart-table" class="data-table cart-table table-striped">
@@ -45,10 +45,10 @@
                                     <?php $data = Cart::content(); $total = 0; ?>
                                   @foreach($data as $cartData)
                                     <tr class="first last odd">
-                                        <td class="image hidden-table"><a href="product-detail.html" title="Women&#39;s Georgette Animal Print" class="product-image"><img src="{{asset('frontend/')}}/products-images/p8.jpg" width="75" alt="Women&#39;s Georgette Animal Print"></a></td>
+                                        <td class="image hidden-table"><a href="product-detail.html" title="Women&#39;s Georgette Animal Print" class="product-image"><img src="{{asset($cartData->options->image)}}" width="75" alt="Women&#39;s Georgette Animal Print"></a></td>
                                         <td>
                                             <h2 class="product-name">
-                                                <a href="product-detail.html">Women's Georgette Animal Print</a>
+                                                <a href="product-detail.html">{{ $cartData->name }}</a>
                                             </h2>
                                         </td>
                                         <td class="a-center hidden-table">
@@ -61,7 +61,13 @@
                                             </span>
                                         </td>
                                         <td class="a-center movewishlist">
-                                            <input name="cart[26340][qty]" value="{{$cartData->qty}}" size="4" title="Qty" class="input-text qty" maxlength="12">
+                                            <form action="{{url('cart-item-update')}}" method="post">@csrf
+                                                <input type="hidden" name="rowId" value="{{$cartData->rowId}}" >
+
+                                                <input name="qty" value="{{$cartData->qty}}" size="4" title="Qty" class="input-text qty mtex-104 cl3 txt-center num-product form-control sss" maxlength="12">
+
+                                                <input type="submit" value="update" >
+                                            </form>
                                         </td>
                                         <td class="a-right movewishlist">
                                             <span class="cart-price">
@@ -70,10 +76,9 @@
                                             </span>
                                         </td>
                                         <td class="a-center last">
-                                            <a href="#" title="Remove item" class="button remove-item"><span><span>Remove item</span></span></a></td>
+                                            <a href="{{url('cart-item-delete/'.$cartData->rowId)}}" title="Remove item" class="button remove-item"><span><span>Remove item</span></span></a></td>
                                     </tr>
-                                    @php 
-                                        $total += $cartData->subtotal;
+                                    
                                 @endforeach
                                 </tbody>
                             </table>
@@ -481,7 +486,7 @@
 
                                 <ul class="checkout">
                                     <li>
-                                        <button type="button" title="Proceed to Checkout" class="button btn-proceed-checkout" onClick=""><span>Proceed to Checkout</span></button>
+                                        <a type="button" href="{{url('checkout')}}" title="Proceed to Checkout" class="button btn-proceed-checkout" onClick=""><span>Proceed to Checkout</span></a>
                                     </li><br>
                                     <li><a href="multiple-addresses.html" title="Checkout with Multiple Addresses">Checkout with Multiple Addresses</a>
                                     </li><br>
