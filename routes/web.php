@@ -17,10 +17,12 @@ Route::group(['namespace'=>'FrontEnd'],function(){
     Route::post('customer-login','LoginController@login');
 
       Route::group(['middleware'=>['auth']],function(){
-        Route::get('user-deshboard','DeshboardController@deshboard');
+        Route::get('user-deshboard','DeshboardController@deshboard')->name('user.deshboard');
         Route::get('shipping','DeshboardController@shipping')->name('shipping');
         Route::post('shipping-store','DeshboardController@shipping_store');
         Route::get('payment','DeshboardController@payment')->name('payment');
+        Route::post('payment-store','DeshboardController@payment_store');
+        Route::get('order-success','DeshboardController@order_success')->name('order.success');
     });
 });
 

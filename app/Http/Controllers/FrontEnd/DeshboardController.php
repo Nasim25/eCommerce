@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\FrontEnd;
 
-use Illuminate\Support\Facades\Auth;
-use App\Shipping;
-use Illuminate\Http\Request;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\OrderDetail;
+use App\Shipping;
+use App\Payment;
+use App\Order;
 use Session;
 class DeshboardController extends Controller
 {
@@ -44,11 +48,66 @@ class DeshboardController extends Controller
 
         }
         
-        echo "<pre>";print_r($shipping);die;
+        return redirect()->back();
     }
 
     public function payment()
     {
         return view('frontend.checkout.payment');
     }
+
+    public function payment_store(Request $request)
+    {
+        
+        $request->validate([
+            'payment_method' => 'required',
+        ]);
+
+        if($request->isMethod('post'))
+        {
+
+           
+        $payment = new Payment();
+        $payment->payment_method = $request->payment_method;
+        $payment->transaction_id = $request->transaction_id;
+        $payment->save();
+
+        $order = new Order();
+        $order->user_id = auth::user()->id;
+        $order->shipping_id = Session::get('shipping_id');
+        $order->payment_id = $payment->id;
+        $order->order_total = Cart::total();
+        $order->status = '0';
+        $order->save();
+        $cartContant = Cart::content();
+        foreach($cartContant as $cart)
+        {
+            $orderdetails = new OrderDetail();
+            $orderdetails->order_id = $order->id;
+            $orderdetails->product_id = $cart->id;
+            $orderdetails->color_id = $cart->options->color;
+            $orderdetails->size = $cart->options->size;
+            $orderdetails->quantity = $cart->qty;
+            $orderdetails->save();
+        }
+
+        Cart::destroy();
+        Session::flash('shipping_id');
+        Session::put('order_success','Order send Successfully');
+        return redirect(route('order.success'));
+
+        }else{
+            return redirect()->back();
+        }
+
+    }
+
+    public function order_success()
+    {
+        
+        return view('frontend.checkout.order_success');
+    }
+
+    
+ 
 }

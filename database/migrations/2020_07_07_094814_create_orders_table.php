@@ -18,7 +18,6 @@ class CreateOrdersTable extends Migration
             $table->integer('user_id');
             $table->integer('shipping_id');
             $table->integer('payment_id');
-            $table->integer('order_no');
             $table->double('order_total');
             $table->boolean('status')->default(false)->comment('0=pending and 1=approve');
             $table->timestamps();

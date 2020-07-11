@@ -42,7 +42,7 @@
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <?php $data = Cart::content(); $total = 0; ?>
+                                    <?php $data = Cart::content(); ?>
                                   @foreach($data as $cartData)
                                     <tr class="first last odd">
                                         <td class="image hidden-table"><a href="product-detail.html" title="Women&#39;s Georgette Animal Print" class="product-image"><img src="{{asset($cartData->options->image)}}" width="75" alt="Women&#39;s Georgette Animal Print"></a></td>
@@ -488,7 +488,7 @@
                                     <li>
                                         <a type="button" href="{{url('checkout')}}" title="Proceed to Checkout" class="button btn-proceed-checkout" onClick=""><span>Proceed to Checkout</span></a>
                                     </li><br>
-                                    <li><a href="multiple-addresses.html" title="Checkout with Multiple Addresses">Checkout with Multiple Addresses</a>
+                                    <li><a href="{{url('checkout')}}" title="Checkout with Multiple Addresses">Checkout with Multiple Addresses</a>
                                     </li><br>
                                 </ul>
                             </div>
