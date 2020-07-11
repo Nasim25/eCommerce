@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FrontEnd;
 
 use auth;
+use Session;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -26,6 +27,7 @@ class CartController extends Controller
                 'weight' => 550,
                 'options'    => [
                     'color' => $data['product_color'],
+                    'size' => $data['size'],
                     'image' => $product->main_image,
                 ]
             ]);
@@ -64,7 +66,13 @@ class CartController extends Controller
     {
         if(auth()->user())
         {
-            return redirect(route('shipping'));
+            if(Session::get('shipping_id'))
+            {
+                return redirect(route('payment'));
+            }else{
+                return redirect(route('shipping'));
+            }
+            
         }else{
             return redirect(route('customer.login'));
         }

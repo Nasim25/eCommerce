@@ -85,6 +85,10 @@
                                                 <option value="1">Color</option>
 
                                             </select>
+                                            <select name="size" required>
+                                                <option value="1">size</option>
+
+                                            </select>
 
                                         </div>
                                     </div>

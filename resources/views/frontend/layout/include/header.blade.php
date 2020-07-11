@@ -4,7 +4,7 @@
         <div id="header">
           <div class="header-container">
             <div class="header-logo"> <a href="{{url('/')}}" title="Car HTML" class="logo">
-              <div><img src="{{asset('public/TECH.png')}}" style="margin-top: -19px;" alt="Car Store"></div>
+              <div><img src="{{asset('public/TECH.png')}}" style="margin-top: -33px;margin-left: -6px;" alt="Car Store"></div>
               </a> </div>
             <div class="header__nav">
               <div class="header-banner">
@@ -16,7 +16,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-6 col-lg-6 col-xs-12 col-sm-6 col-md-6 call-us"><i class="fa fa-clock-o"></i> Mon - Fri : 09am to 06pm <i class="fa fa-phone"></i> +1 800 789 0000</div>
+                <div class="col-lg-6 col-lg-6 col-xs-12 col-sm-6 col-md-6 call-us"><i class="fa fa-clock-o"></i> Everyday : 09am to 06pm <i class="fa fa-phone"></i> +880 1972727020</div>
               </div>
               <div class="fl-header-right">
                 <div class="fl-links">
@@ -34,20 +34,25 @@
                         <!--fl-language--> 
                         <!-- END For version 1,2,3,4,6 --> 
                         <!-- For version 1,2,3,4,6 -->
-                        <div class="fl-currency">
+                        <!-- <div class="fl-currency">
                          <h3>Currency</h3>
                           <ul class="currencies_list">
                             <li><a href="#" title="EGP"> <strong>£</strong> Pound Sterling</a></li>
                             <li><a href="#" title="EUR"> <strong>€</strong> Euro</a></li>
                             <li><a href="#" title="USD"> <strong>$</strong> US Dollar</a></li>
                           </ul>
-                        </div>
+                        </div> -->
                         <!--fl-currency--> 
                         <!-- END For version 1,2,3,4,6 --> 
                       </div>
                        <h3>My Acount</h3>
                       <ul class="links">
-                        <li><a href="login.html" title="My Account">Login</a></li>
+                        @if(auth::user()->id)
+                        <li><a href="" title="My Account">Logout</a></li>
+                        @else
+                        <li><a href="" title="My Account">Login</a></li>
+                        @endif
+                        
                         <li><a href="login.html" title="Wishlist">Register</a></li>
                         </ul>
                     </div>
@@ -55,38 +60,31 @@
                 </div>
                 <div class="fl-cart-contain">
                   <div class="mini-cart">
-                    <div class="basket"> <a href="shopping-cart.html"><span> 2 </span></a> </div>
+                   
+                    <div class="basket"> <a href="{{url('cart')}}"><span> {{Cart::count()}} </span></a> </div>
                     <div class="fl-mini-cart-content" style="display: none;">
                       <div class="block-subtitle">
-                        <div class="top-subtotal">2 items, <span class="price">$259.99</span> </div>
+                        <div class="top-subtotal">{{Cart::count()}} items, <span class="price">TK {{Cart::total()}}</span> </div>
                         <!--top-subtotal--> 
                         <!--pull-right--> 
                       </div>
                       <!--block-subtitle-->
                       <ul class="mini-products-list" id="cart-sidebar">
-                        <li class="item first">
-                          <div class="item-inner"><a class="product-image" title="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" href="#l"><img alt="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" src="products-images/p4.jpg"></a>
+                      @foreach(Cart::content() as $cartData)
+                      <li class="item first">
+                          <div class="item-inner"><a class="product-image" title="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" href="#l"><img alt="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" src="{{asset($cartData->options->image)}}"></a>
                             <div class="product-details">
-                              <div class="access"><a class="btn-remove1" title="Remove This Item" href="#">Remove</a> <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a> </div>
+                              <div class="access"><a class="btn-remove1" title="Remove This Item" href="{{url('cart-item-delete/'.$cartData->rowId)}}">Remove</a> <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a> </div>
                               <!--access--> 
-                              <strong>1</strong> x <span class="price">$179.99</span>
-                              <p class="product-name"><a href="accessories-detail.html">timi &amp; leslie Sophia Diaper Bag...</a></p>
+                              <strong>{{ $cartData->qty }}</strong> x <span class="price">Tk {{ $cartData->price }}</span>
+                              <p class="product-name"><a>{{ $cartData->name }}</a></p>
                             </div>
                           </div>
                         </li>
-                        <li class="item last">
-                          <div class="item-inner"><a class="product-image" title="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" href="#"><img alt="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" src="products-images/p3.jpg"></a>
-                            <div class="product-details">
-                              <div class="access"><a class="btn-remove1" title="Remove This Item" href="#">Remove</a> <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a> </div>
-                              <!--access--> 
-                              <strong>1</strong> x <span class="price">$80.00</span>
-                              <p class="product-name"><a href="accessories-detail.html">JP Lizzy Satchel Designer Diaper Ba...</a></p>
-                            </div>
-                          </div>
-                        </li>
+                      @endforeach
                       </ul>
                       <div class="actions">
-                        <button class="btn-checkout" title="Checkout" type="button" onClick="window.location=checkout.html"><span>Checkout</span></button>
+                        <a class="btn-checkout" title="Checkout" type="button" href="{{url('checkout')}}"><span>Checkout</span></a>
                       </div>
                       <!--actions--> 
                     </div>

@@ -14,7 +14,7 @@
                 <div class="new_title">
                 <h2>Deals of the Week</h2>
                 <div class="box-timer">
-                    <div class="countbox_1 timer-grid"></div>
+                    <!-- <div class="countbox_1 timer-grid"></div> -->
                 </div>
                 </div>
                 
@@ -25,8 +25,8 @@
                         <div class="item-inner">
                             <div class="item-img">
                             <div class="item-img-info"><a href="{{url('/product-view/'.$product->id)}}" title="Retis lapen casen" class="product-image"><img src="{{asset($product->main_image)}}" alt="Retis lapen casen"></a>
-                                <div class="new-label new-top-left">Used</div>
-                                <div class="sale-label sale-top-left">-15%</div>
+                                <!-- <div class="new-label new-top-left">Used</div>
+                                <div class="sale-label sale-top-left">-15%</div> -->
                                 <div class="item-box-hover">
                                 <!-- <div class="box-inner">
                                     <div class="add_cart">
@@ -40,7 +40,7 @@
                             </div>
                             <div class="item-info">
                             <div class="info-inner">
-                                <div class="item-title"><a href="accessories-detail.html" title="Retis lapen casen">Gorgeous Mercedes-Benz E-Class All-Terrain Luxury</a> </div>
+                                <div class="item-title"><a href="{{url('/product-view/'.$product->id)}}" title="Retis lapen casen">{{$product->product_name}}</a> </div>
                                 <div class="item-content">
                                 <div class="rating">
                                     <div class="ratings">
@@ -51,7 +51,7 @@
                                     </div>
                                 </div>
                                 <div class="item-price">
-                                    <div class="price-box"><span class="regular-price"><span class="price">$49000.00</span> </span> </div>
+                                    <div class="price-box"><span class="regular-price"><span class="price">Tk {{$product->product_price}}</span> </span> </div>
                                 </div>
                                 <div class="other-info">
                                     <div class="col-km"><i class="fa fa-tachometer"></i> 4875km</div>
@@ -151,23 +151,23 @@
                              <div class="item">
                                 <div class="item-inner">
                                     <div class="item-img">
-                                    <div class="item-img-info"><a href="accessories-detail.html" title="Retis lapen casen" class="product-image"><img src="{{asset($product['main_image'])}}" alt="Retis lapen casen"></a>
-                                        <div class="new-label new-top-left">Used</div>
-                                        <div class="sale-label sale-top-left">-15%</div>
+                                    <div class="item-img-info"><a href="{{url('/product-view/'.$product['id'])}}" title="Retis lapen casen" class="product-image"><img src="{{asset($product['main_image'])}}" alt="Retis lapen casen"></a>
+                                        <!-- <div class="new-label new-top-left">Used</div>
+                                        <div class="sale-label sale-top-left">-15%</div> -->
                                         <div class="item-box-hover">
                                         <div class="box-inner">
-                                            <div class="add_cart">
+                                            <!-- <div class="add_cart">
                                             <button class="button btn-cart" type="button"></button>
-                                            </div>
-                                            <div class="product-detail-bnt"><a class="button detail-bnt"><span>Quick View</span></a></div>
-                                            <div class="actions"><span class="add-to-links"><a href="#" class="link-wishlist" title="Add to Wishlist"><span>Add to Wishlist</span></a> </span> </div>
+                                            </div> -->
+                                            <!-- <div class="product-detail-bnt"><a class="button detail-bnt"><span>Quick View</span></a></div>
+                                            <div class="actions"><span class="add-to-links"><a href="#" class="link-wishlist" title="Add to Wishlist"><span>Add to Wishlist</span></a> </span> </div> -->
                                         </div>
                                         </div>
                                     </div>
                                     </div>
                                     <div class="item-info">
                                     <div class="info-inner">
-                                        <div class="item-title"><a href="accessories-detail.html" title="Retis lapen casen">Gorgeous Mercedes-Benz E-Class All-Terrain Luxury</a> </div>
+                                        <div class="item-title"><a href="{{url('/product-view/'.$product['id'])}}" title="Retis lapen casen">{{$product['product_name']}}</a> </div>
                                         <div class="item-content">
                                         <div class="rating">
                                             <div class="ratings">
@@ -178,7 +178,7 @@
                                             </div>
                                         </div>
                                         <div class="item-price">
-                                            <div class="price-box"><span class="regular-price"><span class="price">$49000.00</span> </span> </div>
+                                            <div class="price-box"><span class="regular-price"><span class="price">Tk {{$product['product_price']}}</span> </span> </div>
                                         </div>
                                         <!-- <div class="other-info">
                                             <div class="col-km"><i class="fa fa-tachometer"></i> 4875km</div>
@@ -200,7 +200,7 @@
         @endforeach
         <!-- end category product -->
         <!-- Logo Brand Block -->
-        <div class="brand-logo wow bounceInUp animated">
+        <!-- <div class="brand-logo wow bounceInUp animated">
             <div class="container">
                 <div class="row">
                 <div class="home-banner col-lg-2 hidden-md col-xs-12 hidden-sm"> </div>
@@ -229,9 +229,9 @@
                 </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- best Pro Slider -->
-        <section class=" wow bounceInUp animated">
+        <!-- <section class=" wow bounceInUp animated">
             <div class="best-pro slider-items-products container">
             <div class="new_title">
                 <h2>Best Seller Cars</h2>
@@ -281,7 +281,7 @@
                     </div>
                 </div>
                 
-                <!-- Item -->
+                
                 <div class="item">
                     <div class="item-inner">
                     <div class="item-img">
@@ -322,9 +322,9 @@
                     </div>
                     </div>
                 </div>
-                <!-- End Item --> 
+              
                 
-                <!-- Item -->
+                
                 <div class="item">
                     <div class="item-inner">
                     <div class="item-img">
@@ -365,7 +365,7 @@
                     </div>
                     </div>
                 </div>
-                <!-- End Item -->
+                
                 
                 <div class="item">
                     <div class="item-inner">
@@ -408,7 +408,7 @@
                     </div>
                 </div>
                 
-                <!-- Item -->
+               
                 <div class="item">
                     <div class="item-inner">
                     <div class="item-img">
@@ -450,9 +450,9 @@
                     </div>
                     </div>
                 </div>
-                <!-- End Item --> 
+              
                 
-                <!-- Item -->
+              
                 <div class="item">
                     <div class="item-inner">
                     <div class="item-img">
@@ -494,11 +494,11 @@
                     </div>
                     </div>
                 </div>
-                <!-- End Item --> 
+               
                 </div>
             </div>
             </div>
-        </section>
+        </section> -->
         <!-- Home Lastest Blog Block -->
         <div class="latest-blog wow bounceInUp animated animated container"> 
             <!--exclude For version 6 -->

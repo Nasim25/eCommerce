@@ -7,7 +7,7 @@
             <div class="cart wow bounceInUp animated">
                 <div class="table-responsive shopping-cart-tbl  container">
 
-                    <input name="form_key" type="hidden" value="EPYwQxF6xoWcjLUr">
+                    
                     <fieldset>
                         <table id="shopping-cart-table" class="data-table cart-table table-striped">
                             <colgroup>
@@ -90,12 +90,13 @@
 
                     </fieldset>
 
-                    
+                <form action="{{url('payment-store')}}" method="post">@csrf
                     <div class="form-group row">
                         <label for="inputPassword" class="col-sm-2 col-form-label">Payment Method</label>
                         <div class="col-sm-4">
-                        <select class="form-control" id='payments'>
-                            <option>Select Payment Type</option>
+                        
+                        <select class="form-control" id='payment_method' name="payment_method" required>
+                            <option value="">Select Payment Type</option>
                             <option value="hand_cash">Hand Cash</option>
                             <option value="bkash">Bkash</option>
                         </select>
@@ -105,14 +106,14 @@
                         <label for="inputPassword" class="col-sm-2 col-form-label"></label>
                         <div class="col-sm-4">
                             <span>Bkash No is: 0171000000</span>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="transaction_id">
                         
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputPassword" class="col-sm-2 col-form-label"></label>
                         <div class="col-sm-4">
-                            <button class="btn btn-md">Submit</button>
+                            <button type="submit" class="btn btn-md">Submit</button>
                         </div>
                     </div>
                      
