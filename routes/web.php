@@ -8,7 +8,7 @@ Route::group(['namespace'=>'FrontEnd'],function(){
     Route::get('/product-view/{product}','ProductController@product_view');
 
     Route::post('add-to-cart','CartController@addToCart');
-    Route::get('cart','CartController@cart')->name('cart');
+    Route::get('p','CartController@cart')->name('cart');
     Route::get('cart-item-delete/{rowId}','CartController@cart_item_delete');
     Route::post('cart-item-update','CartController@cart_item_update');
     Route::get('checkout','CartController@checkout');

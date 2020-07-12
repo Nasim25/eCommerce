@@ -38,9 +38,9 @@
                                     @foreach($products as $key => $product)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
-                                        <td>{{ $product->product_name }}</td>
+                                        <td>{{Str::limit($product->product_name,10)}}</td>
                                         <td>{{ $product->product_code }}</td>
-                                        <td>{{ $product->product_code }}</td>
+                                        <td>1</td>
                                         <td>{{ $product->category->category_name }}</td>
                                         <td>{{ $product->subcategory->subcategory_name }}</td>
                                         <td>
