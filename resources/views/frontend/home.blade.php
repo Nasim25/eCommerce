@@ -40,7 +40,7 @@
                             </div>
                             <div class="item-info">
                             <div class="info-inner">
-                                <div class="item-title"><a href="{{url('/product-view/'.$product->id)}}" title="Retis lapen casen">{{$product->product_name}}</a> </div>
+                                <div class="item-title"><a href="{{url('/product-view/'.$product->id)}}" title="Retis lapen casen">{{Str::limit($product->product_name,36)}}</a> </div>
                                 <div class="item-content">
                                 <div class="rating">
                                     <div class="ratings">
@@ -101,7 +101,7 @@
                             </div>
                             <div class="item-info">
                             <div class="info-inner">
-                                <div class="item-title"><a href="accessories-detail.html" title="Retis lapen casen">{{ $category['category_name'] }}</a> </div>
+                                <div class="item-title"><a href="accessories-detail.html" title="Retis lapen casen">{{Str::limit($category['category_name'],36)}}</a> </div>
                                 <div class="item-content">
                                 <!-- <div class="rating">
                                     <div class="ratings">
@@ -167,7 +167,7 @@
                                     </div>
                                     <div class="item-info">
                                     <div class="info-inner">
-                                        <div class="item-title"><a href="{{url('/product-view/'.$product['id'])}}" title="Retis lapen casen">{{$product['product_name']}}</a> </div>
+                                        <div class="item-title"><a href="{{url('/product-view/'.$product['id'])}}" title="Retis lapen casen">{{Str::limit($product['product_name'],36)}}</a> </div>
                                         <div class="item-content">
                                         <div class="rating">
                                             <div class="ratings">

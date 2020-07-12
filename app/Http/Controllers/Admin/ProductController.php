@@ -105,14 +105,14 @@ class ProductController extends Controller
                     $imagePath = 'public/image/product/main_image/'.$imageName;
                     // upload image
                     Image::make($image_temp)->save($imagePath);
-                    Image::make($image_temp)->resize(600,300)->save($imagePath);
+                    Image::make($image_temp)->resize(294,147)->save($imagePath);
                     // save image to database
                     $product->main_image = $imagePath;
                 }
             }else{
                 $product->main_image = 'image/noimage.png';
             }
-            // Save Product details in product table
+            
              // product image
              if($request->hasFile('main_image'))
              {
