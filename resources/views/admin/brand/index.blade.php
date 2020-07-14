@@ -15,6 +15,7 @@
             <div class="row animated fadeInRight">
                     <div class="col-sm-12">
                         <h4 style="background: white;padding: 13px;border-radius: 3px;margin-bottom: 1px;" class="section-subtitle"><b>Brand</b></h4>
+                        <a href="{{ url('admin/brand-create')}}" class="btn btn-sm btn-success pull-right" style="margin-top: -40px; margin-right: 13px;">Add Brand</a>
                         <div class="panel">
                             <div class="panel-content">
                                 <table id="responsive-table" class="data-table table table-striped table-hover table-bordered responsive nowrap" cellspacing="0" width="100%">

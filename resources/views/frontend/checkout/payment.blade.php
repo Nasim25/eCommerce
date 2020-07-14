@@ -1,4 +1,5 @@
 @extends('frontend.layout.frontend_layout')
+@section('frontend_title','Payment')
 @section('front_section')
 <div class="content">
     <div class="main-container col1-layout wow bounceInUp animated">

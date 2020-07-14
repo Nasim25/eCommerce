@@ -5,17 +5,25 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace'=>'FrontEnd'],function(){
     Route::get('/','HomeController@home');
+    Route::get('/about','HomeController@about');
     Route::get('/product-view/{product}','ProductController@product_view');
+    Route::get('/product-by-category/{product}','ProductController@product_by_category');
+    Route::get('/product-by-subcategory/{id}','ProductController@product_by_subcategory');
 
     Route::post('add-to-cart','CartController@addToCart');
-    Route::get('p','CartController@cart')->name('cart');
+    Route::get('cart','CartController@cart')->name('cart');
     Route::get('cart-item-delete/{rowId}','CartController@cart_item_delete');
     Route::post('cart-item-update','CartController@cart_item_update');
     Route::get('checkout','CartController@checkout');
 
+
+    Route::get('customer/login','LoginController@customer_login')->name('customerlogin');
+    Route::post('customer/login','LoginController@customer_login_login')->name('customerlogin');
+    Route::post('customer/register','LoginController@customer_register')->name('customerregister');
     Route::get('customer-login','LoginController@index')->name('customer.login');
     Route::post('customer-login','LoginController@login');
 
+    Route::post('subscribe','SubscribeController@subscribe');
       Route::group(['middleware'=>['auth']],function(){
         Route::get('user-deshboard','DeshboardController@deshboard')->name('user.deshboard');
         Route::get('shipping','DeshboardController@shipping')->name('shipping');
@@ -27,7 +35,7 @@ Route::group(['namespace'=>'FrontEnd'],function(){
 });
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index');
 
 Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin'], function (){
     Route::match(['get','post'],'/','AdminController@login');
@@ -44,6 +52,8 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin'], function (
 
             // brand
             Route::get('brand','BrandController@index');
+            Route::get('brand-create','BrandController@create');
+            Route::post('brand-store','BrandController@brand_store');
             // category
             Route::get('category','CategoryController@category_list');
             Route::post('category-update-status','CategoryController@category_update_status');

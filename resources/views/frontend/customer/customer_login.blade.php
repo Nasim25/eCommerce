@@ -1,4 +1,5 @@
 @extends('frontend.layout.frontend_layout')
+@section('frontend_title','Login')
 @section('front_section')
 <div class="content">
 

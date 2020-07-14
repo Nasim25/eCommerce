@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontEnd;
 use auth;
 use Session;
 use App\Product;
+use App\Section;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -39,7 +40,8 @@ class CartController extends Controller
 
     public function cart()
     {
-        return view('frontend.cart');
+        $sections = Section::where('status', 1)->get();
+        return view('frontend.cart',compact('sections'));
     }
 
     public function cart_item_update(Request $request)
@@ -64,6 +66,7 @@ class CartController extends Controller
 
     public function checkout()
     {
+        
         if(auth()->user())
         {
             if(Session::get('shipping_id'))

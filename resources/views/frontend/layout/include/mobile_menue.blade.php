@@ -37,6 +37,6 @@
           <li class="level1 first"><a href=""><span>Blog List</span></a></li>
         </ul>
     </li>
-    <li><a href="#">About</a></li>
+    <li><a href="{{url('about')}}">About</a></li>
    </ul>
 </div>

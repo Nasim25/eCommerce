@@ -1,4 +1,5 @@
 @extends('frontend.layout.frontend_layout')
+@section('frontend_title','Customer Deshboard')
 @section('front_section')
 
 <div class="page-heading">
@@ -26,7 +27,7 @@
                     <div class="dashboard">
                         @if($message)
                         <div class="welcome-msg">
-                            <p class="hello"><strong>{{$message}}</strong></p>
+                            <p class="hello" style="color:green;"><strong>{{$message}}</strong></p>
                         </div>
                         @endif
                         <div class="recent-orders">

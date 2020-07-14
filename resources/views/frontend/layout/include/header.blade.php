@@ -47,13 +47,23 @@
                     </div>
                     <h3>My Acount</h3>
                     <ul class="links">
+                    @if(auth::user())
+                    <li><a href="{{url('user-deshboard')}}" title="My Account">Profile</a></li>
+                    @endif
                       @if(auth::user())
-                      <li><a href="" title="My Account">Logout</a></li>
+                      <li><a title="My Account" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Logout</a>
+                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form> 
+                                                    </li>
                       @else
-                      <li><a href="" title="My Account">Login</a></li>
+                      <li><a href="{{url('customer/login')}}" title="My Account">Login</a></li>
+                      <li><a href="{{url('customer/login')}}" title="Wishlist">Register</a></li>
                       @endif
 
-                      <li><a href="login.html" title="Wishlist">Register</a></li>
+                      
                     </ul>
                   </div>
                 </div>
@@ -111,17 +121,17 @@
                 <div class="nav-inner">
                   <!-- BEGIN NAV -->
                   <ul id="nav" class="hidden-xs">
-                    <li class="active"> <a class="level-top" href="#"><span>Home</span></a></li>
+                    <li class="active"> <a class="level-top" href="{{url('/')}}"><span>Home</span></a></li>
                     @foreach($sections as $section)
 
                     <li class="level0 parent drop-menu"><a href="#"><span>{{$section->name}}</span> </a>
                       <!--sub sub category-->
                       <ul class="level1">
                       @foreach($section->categories as $category)
-                        <li class="level1 first parent"><a href="checkout.html"><span>{{$category->category_name}}</span></a>
+                        <li class="level1 first parent"><a href="{{url('product-by-category/'.$category['slug'])}}"><span>{{$category->category_name}}</span></a>
                           <ul class="level2 right-sub">
                             @foreach($category->subcategories as $subcategory)
-                            <li class="level2 nav-2-1-1 first"><a href="checkout-method.html"><span>{{$subcategory->subcategory_name}}</span></a></li>
+                            <li class="level2 nav-2-1-1 first"><a href="{{url('product-by-subcategory/'.$subcategory->id)}}"><span>{{$subcategory->subcategory_name}}</span></a></li>
                             @endforeach
                           </ul>
                         </li>
@@ -137,7 +147,7 @@
                         <li class="level1 nav-10-2"> <a href="blog-detail.html"> <span>Blog Detail</span> </a> </li>
                       </ul> -->
                     </li>
-                    <li class="mega-menu hidden-sm"> <a class="level-top" href="#"><span>About</span></a> </li>
+                    <li class="mega-menu hidden-sm"> <a class="level-top" href="{{url('about')}}"><span>About</span></a> </li>
                   </ul>
                   <!--nav-->
                 </div>
