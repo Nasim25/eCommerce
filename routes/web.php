@@ -38,7 +38,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin'], function (){
-    Route::match(['get','post'],'/','AdminController@login');
+    Route::match(['get','post'],'login','AdminController@login');
     Route::group(['middleware' =>['admin']],function(){
             Route::get('setting','AdminController@setting');
             Route::post('setting-update','AdminController@setting_update');
