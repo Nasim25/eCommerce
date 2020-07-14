@@ -8,11 +8,11 @@ class Subcategory extends Model
 {
     public function category()
     {
-        return $this->belongsTo('App\Category','id')->select('id','category_name');
+        return $this->belongsTo('App\Category')->select('category_name');
     }
 
     public function products()
     {
-        return $this->hasMany('App\Product','category_id');
+        return $this->hasMany('App\Product','subcategory_id');
     }
 }

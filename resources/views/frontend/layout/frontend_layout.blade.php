@@ -5,8 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>@yield('frontend_title')</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Default Description">
-<meta name="keywords" content="fashion, store, E-commerce">
+<meta name="description" content="Techzone">
+<meta name="keywords" content="fashion, store, E-commerce, CCTV, CCTV Camera, HD Camera, IP Camera,">
 <meta name="robots" content="*">
 <link rel="icon" href="#" type="image/x-icon">
 <link rel="shortcut icon" href="#" type="image/x-icon">
@@ -25,6 +25,7 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700,800' rel='stylesheet' type='text/css'>
 <link href="https://fonts.googleapis.com/css?family=Teko:300,400,500,600,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Saira+Condensed:300,400,500,600,700,800" rel="stylesheet">
+<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 @yield('fontend_css')
 </head>
 <body>
@@ -151,6 +152,19 @@
       
       var iid1 = "countbox_1";
       CountBack_slider(gsecs1, "countbox_1", 1);
+    </script>
+
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+        {!! Toastr::message() !!}
+        <script>
+        @if($errors->any())
+        @foreach($errors->all() as $error)
+        toastr.error('{{ $error }}','Error',{
+            closeButton:true,
+            progressBar:true,
+        });
+        @endforeach
+        @endif
     </script>
 
     @yield('fontend_js')

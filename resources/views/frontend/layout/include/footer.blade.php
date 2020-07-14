@@ -52,11 +52,11 @@
               <div class="newsletter-wrap">
                 <h5>Newsletter</h5>
                 <h4>Get Notified Of any Updates!</h4>
-                <form action="#" method="post" id="newsletter-validate-detail1">
+                <form>
                   <div id="container_form_news">
                     <div id="container_form_news2">
                       <input type="text" name="email" id="newsletter1" title="Sign up for our newsletter" class="input-text required-entry validate-email" placeholder="Enter your email address">
-                      <button type="submit" title="Subscribe" class="button subscribe"><span>Subscribe</span></button>
+                      <button type="button" title="Subscribe" class="button subscribe"><span>Subscribe</span></button>
                     </div>
                     <!--container_form_news2--> 
                   </div>
@@ -73,13 +73,12 @@
         <div class="row">
           <div class="col-sm-4 col-xs-12 col-lg-4">
             <div class="co-info">
-              <h4>SHOWROOM</h4>
+              <h4>TECHZONE</h4>
               <address>
-              <div><span>ThemesGround, 789 Main rd, Anytown, <br>
-                CA 12345 USA</span></div>
-              <div> <span> +1 800 789 0000</span></div>
-              <div> <span><a href="#">Harrier@themesground.com</a></span></div>
-              <div> <span>Mon - Fri : 09am to 06pm</span></div>
+              <div><span>2A/12 Pallabi, Dhaka-1216,Bangladesh</span></div>
+              <div> <span> +88 01923 24 07 00</span></div>
+              <div> <span><a href="#">info@tzlbd.com</a></span></div>
+              <div> <span>Every Day : 09am to 06pm</span></div>
               </address>
             </div>
           </div>
@@ -87,7 +86,7 @@
             <div class="footer-column">
               <h4>Quick Links</h4>
               <ul class="links">
-                <li class="first"><a title="How to buy" href="http://themesground.com/blog/">Blog</a></li>
+                <li class="first"><a title="How to buy" href="#">Blog</a></li>
                 <li><a title="FAQs" href="#">FAQs</a></li>
                 <li><a title="Payment" href="#">Payment</a></li>
                 <li><a title="Shipment" href="#">Shipment</a></li>
@@ -146,7 +145,8 @@
               </ul>
             </div>
           </div>
-          <div class="col-sm-4 col-xs-12 coppyright"><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></div>
+          <div class="col-sm-4 col-xs-12 coppyright"><a target="_blank" href="#">&copy;  Copyright TZLBD.  All Rights Reserved &
+Designed by <a href="https://baitsbd.com/">BAITS</a></a></div>
           <div class="col-xs-12 col-sm-4">
             <div class="payment-accept"> <img src="{{asset('frontend/')}}/images/payment-1.png" alt=""> <img src="{{asset('frontend/')}}/images/payment-2.png" alt=""> <img src="{{asset('frontend/')}}/images/payment-3.png" alt=""> <img src="{{asset('frontend/')}}/images/payment-4.png" alt=""> </div>
           </div>

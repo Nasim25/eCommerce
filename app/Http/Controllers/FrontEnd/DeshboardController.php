@@ -2,20 +2,29 @@
 
 namespace App\Http\Controllers\FrontEnd;
 
-use Gloudemans\Shoppingcart\Facades\Cart;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use App\OrderDetail;
-use App\Shipping;
-use App\Payment;
-use App\Order;
 use Session;
+use App\Order;
+use App\Payment;
+use App\Section;
+use App\Shipping;
+use App\OrderDetail;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
+use Gloudemans\Shoppingcart\Facades\Cart;
+
 class DeshboardController extends Controller
 {
+    public function deshboard()
+    {
+        $sections = Section::where('status', 1)->get();
+        return view('frontend.customer.customer_deshboard',compact('sections'));
+    }
     public function shipping()
     {
-        return view('frontend.checkout.shipping');
+        $sections = Section::where('status', 1)->get();
+        return view('frontend.checkout.shipping',compact('sections'));
     }
 
     public function shipping_store(Request $request)
@@ -43,6 +52,7 @@ class DeshboardController extends Controller
             $shipping->save();
 
             Session::put('shipping_id',$shipping->id);
+            Toastr::success('Shipping Address Successfully Inserted', 'success');
             return redirect(route('payment'));
 
 
@@ -53,7 +63,8 @@ class DeshboardController extends Controller
 
     public function payment()
     {
-        return view('frontend.checkout.payment');
+        $sections = Section::where('status', 1)->get();
+        return view('frontend.checkout.payment',compact('sections'));
     }
 
     public function payment_store(Request $request)
@@ -93,7 +104,8 @@ class DeshboardController extends Controller
 
         Cart::destroy();
         Session::flash('shipping_id');
-        Session::put('order_success','Order send Successfully');
+        Session::put('order_success','Order Submit Successfully');
+        Toastr::success('Order Submit Successfully', 'success');
         return redirect(route('order.success'));
 
         }else{
@@ -104,8 +116,8 @@ class DeshboardController extends Controller
 
     public function order_success()
     {
-        
-        return view('frontend.checkout.order_success');
+        $sections = Section::where('status', 1)->get();
+        return view('frontend.checkout.order_success',compact('sections'));
     }
 
     

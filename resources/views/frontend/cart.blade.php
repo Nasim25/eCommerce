@@ -1,4 +1,5 @@
 @extends('frontend.layout.frontend_layout')
+@section('frontend_title','Shopping Cart')
 @section('front_section')
 <div class="content">
     <div class="main-container col1-layout wow bounceInUp animated">
@@ -7,7 +8,6 @@
             <div class="cart wow bounceInUp animated">
                 <div class="table-responsive shopping-cart-tbl  container">
                     
-                        <input name="form_key" type="hidden" value="EPYwQxF6xoWcjLUr">
                         <fieldset>
                             <table id="shopping-cart-table" class="data-table cart-table table-striped">
                                 <colgroup>
@@ -34,9 +34,9 @@
                                 <tfoot>
                                     <tr class="first last">
                                         <td colspan="50" class="a-right last">
-                                            <button type="button" title="Continue Shopping" class="button btn-continue" onClick=""><span><span>Continue Shopping</span></span></button>
-                                            <button type="submit" name="update_cart_action" value="update_qty" title="Update Cart" class="button btn-update"><span><span>Update Cart</span></span></button>
-                                            <button type="submit" name="update_cart_action" value="empty_cart" title="Clear Cart" class="button btn-empty" id="empty_cart_button"><span><span>Clear Cart</span></span></button>
+                                            <a href="{{url('/')}}" class="btn btn-sm pull-left" title="Continue Shopping" class="button btn-continue"><span><span>Continue Shopping</span></span></a>
+                                            <!-- <button type="submit" name="update_cart_action" value="update_qty" title="Update Cart" class="button btn-update"><span><span>Update Cart</span></span></button>
+                                            <button type="submit" name="update_cart_action" value="empty_cart" title="Clear Cart" class="button btn-empty" id="empty_cart_button"><span><span>Clear Cart</span></span></button> -->
 
                                         </td>
                                     </tr>
@@ -486,9 +486,8 @@
 
                                 <ul class="checkout">
                                     <li>
-                                        <a type="button" href="{{url('checkout')}}" title="Proceed to Checkout" class="button btn-proceed-checkout" onClick=""><span>Proceed to Checkout</span></a>
-                                    </li><br>
-                                    <li><a href="{{url('checkout')}}" title="Checkout with Multiple Addresses">Checkout with Multiple Addresses</a>
+                                        <a href="{{url('checkout')}}" title="Proceed to Checkout" class="btn btn-sm" onClick=""><span>Proceed to Checkout</span></a>
+
                                     </li><br>
                                 </ul>
                             </div>

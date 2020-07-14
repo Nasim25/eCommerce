@@ -43,6 +43,7 @@ $(document).ready(function(){
             }
          })
     });
+    
     $('.categoryUpdateStatus').click(function(){
          var status = $(this).text();
          var category_id = $(this).attr("category_id");
