@@ -53,7 +53,7 @@
                 <strong>Warning!</strong>{{ $message }}
                 </div>
              @enderror
-                    <form action="{{url('admin')}}" method="post"> @csrf
+                    <form action="{{url('admin/login')}}" method="post"> @csrf
                         <div class="form-group mt-md">
                             <span class="input-with-icon">
                                 <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="Email" autofocus>
