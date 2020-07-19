@@ -54,21 +54,28 @@ class ProductController extends Controller
         if($request->isMethod('post'))
         {
             $data = $request->all();
+            
             $rules=[
                 'category_id'   =>  'required',
+                'subcategory_id'   =>  'required',
                 'product_name'  =>  'required',
                 'product_code'  =>  'required|regex:/^[\w-]*$/',
                 'product_price' =>  'required|numeric',
-                'main_image'    =>  'image',
+                'main_image'    =>  'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:width=294,height=247',
+                'view_image'    =>  'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:width=700,height=700',
             ];
             $customeMessage=[
                 'category_id.required'    =>'Category is required',
+                'subcategory_id.required'    =>'Subcategory is required',
                 'product_name.reges'       =>'Valid product name is required',
                 'product_code.required'       =>'Product code is required',
                 'product_code.regex'              =>'Valid Product code is required',
                 'product_price.required'      =>'Product Price is required',
                 'product_price.numeric'      =>'Valid Product Price is required',
-                'main_image.image'      =>'Valid Product image is required',
+                'main_image.required'      =>'Product Main Image Required',
+                'main_image.dimensions'      =>'Invalid Product image dimensions(width:294,height:247)',
+                'view_image.dimensions'      =>'Product View Image Required',
+                'view_image.dimensions'      =>'Invalid Product View image dimensions(width:700,height:700)',
             ];
             $this->validate($request,$rules,$customeMessage);
             
@@ -101,11 +108,10 @@ class ProductController extends Controller
                 if($image_temp->isValid()){
                     // Get Image Extention
                     $extention = $image_temp->getClientOriginalExtension();
-                    $imageName = rand(111,999999).'-'.time().'.'.$extention;
+                    $imageName = Str::slug($data['product_code']).'-'.rand(111,999999).'-'.time().'.'.$extention;
                     $imagePath = 'public/image/product/main_image/'.$imageName;
                     // upload image
                     Image::make($image_temp)->save($imagePath);
-                    Image::make($image_temp)->resize(294,147)->save($imagePath);
                     // save image to database
                     $product->main_image = $imagePath;
                 }
@@ -113,10 +119,10 @@ class ProductController extends Controller
                 $product->main_image = 'image/noimage.png';
             }
             
-             // product image
-             if($request->hasFile('main_image'))
+             // product view image
+             if($request->hasFile('view_image'))
              {
-                 $image_temp = $request->file('main_image');
+                 $image_temp = $request->file('view_image');
                  if($image_temp->isValid()){
                      // Get Image Extention
                      $extention = $image_temp->getClientOriginalExtension();
@@ -124,7 +130,6 @@ class ProductController extends Controller
                      $imagePath = 'public/image/product/'.$imageName;
                      // upload image
                      Image::make($image_temp)->save($imagePath);
-                     Image::make($image_temp)->resize(800,800)->save($imagePath);
                      // save image to database
                      $product->view_image = $imagePath;
                  }
@@ -177,6 +182,16 @@ class ProductController extends Controller
         
         if($request->isMethod('post'))
         {
+
+            $rules=[
+                'product_image'    =>  'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:width=700,height=700',
+            ];
+            $customeMessage=[
+                'product_image.dimensions'      =>'Product View Image Required',
+                'product_image.dimensions'      =>'Invalid Product View image dimensions(width:700,height:700)',
+            ];
+
+            $this->validate($request,$rules,$customeMessage);
             $product_image = new ProductImage();
             $data = $request->all();
             if($request->hasFile('product_image'))
@@ -189,7 +204,6 @@ class ProductController extends Controller
                     $imagePath = 'public/image/product/product_image/'.$imageName;
                     // upload image
                     Image::make($image_temp)->save($imagePath);
-                    Image::make($image_temp)->resize(800,800)->save($imagePath);
                     // save image to database
                     
                     $product_image->product_image = $imagePath;

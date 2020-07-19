@@ -10,6 +10,8 @@ Route::group(['namespace'=>'FrontEnd'],function(){
     Route::get('/product-by-category/{product}','ProductController@product_by_category');
     Route::get('/product-by-subcategory/{id}','ProductController@product_by_subcategory');
 
+    Route::post('product-review','ProductController@product_review');
+    
     Route::post('add-to-cart','CartController@addToCart');
     Route::get('cart','CartController@cart')->name('cart');
     Route::get('cart-item-delete/{rowId}','CartController@cart_item_delete');
@@ -75,6 +77,10 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin'], function (
             Route::get('slider','SliderController@slider');
             Route::post('/slider-update-status','SliderController@slider_update_status');
             Route::match(['get','post'],'slider-add/{id?}','SliderController@slider_add');
+
+            // order
+            Route::get('order','OrderController@index');
+            Route::get('order-details/{id}','OrderController@index_details');
     });
     
 });

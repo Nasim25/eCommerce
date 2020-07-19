@@ -44,7 +44,7 @@
                                     </colgroup>
                                     <thead>
                                         <tr class="first last">
-                                            <th>Order # </th>
+                                            <th>Order No # </th>
                                             <th>Date</th>
                                             <th>Ship To</th>
                                             <th><span class="nobr">Order Total</span></th>
@@ -53,46 +53,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($orders as $order)
                                         <tr class="first odd">
-                                            <td>12800000002</td>
-                                            <td><span class="nobr">5/12/2015</span></td>
-                                            <td>jhon doe</td>
-                                            <td><span class="price">$403.00</span></td>
-                                            <td><em>Pending</em></td>
+                                            <td>{{$order->id}}</td>
+                                            <td><span class="nobr">{{$order->created_at}}</span></td>
+                                            <td>{{$order->shipping->name}}</td>
+                                            <td><span class="price">{{$order->total}}</span></td>
+                                            <td><em>{{$order->total == 1?'Delivered':'Pending'}}</em></td>
                                             <td class="a-center last"><span class="nobr"> <a href="#">View Order</a> </span></td>
                                         </tr>
-                                        <tr class="even">
-                                            <td>12800000001</td>
-                                            <td><span class="nobr">5/11/2015</span></td>
-                                            <td>jhon doe</td>
-                                            <td><span class="price">$506.50</span></td>
-                                            <td><em>Pending</em></td>
-                                            <td class="a-center last"><span class="nobr"> <a href="#">View Order</a> <span class="separator">|</span> <a href="#" class="link-reorder">Reorder</a> </span></td>
-                                        </tr>
-                                        <tr class="odd">
-                                            <td>13100000001</td>
-                                            <td><span class="nobr">5/9/2015</span></td>
-                                            <td>jhon doe</td>
-                                            <td><span class="price">$997.84</span></td>
-                                            <td><em>Pending</em></td>
-                                            <td class="a-center last"><span class="nobr"> <a href="#">View Order</a> <span class="separator">|</span> <a href="#" class="link-reorder">Reorder</a> </span></td>
-                                        </tr>
-                                        <tr class="even">
-                                            <td>12000000002</td>
-                                            <td><span class="nobr">4/1/2015</span></td>
-                                            <td>jhon doe</td>
-                                            <td><span class="price">$60.00</span></td>
-                                            <td><em>Pending</em></td>
-                                            <td class="a-center last"><span class="nobr"> <a href="#">View Order</a> <span class="separator">|</span> <a href="#" class="link-reorder">Reorder</a> </span></td>
-                                        </tr>
-                                        <tr class="last odd">
-                                            <td>12000000001</td>
-                                            <td><span class="nobr">4/1/2015</span></td>
-                                            <td>jhon doe</td>
-                                            <td><span class="price">$208.00</span></td>
-                                            <td><em>Pending</em></td>
-                                            <td class="a-center last"><span class="nobr"> <a href="#">View Order</a> <span class="separator">|</span> <a href="#" class="link-reorder">Reorder</a> </span></td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

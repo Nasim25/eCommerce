@@ -34,6 +34,8 @@
                                             <div class="form-group">
                                                 <input type="submit" class="btn btn-sm btn-success" value="Submit" >
                                             </div>
+
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -56,4 +58,5 @@
     <script src="{{asset('admin')}}/vendor/bootstrap_max-lenght/bootstrap-maxlength.js"></script>
     <script src="{{asset('admin')}}/vendor/select2/js/select2.min.js"></script>
     <script src="{{asset('admin')}}/javascripts/examples/forms/advanced.js"></script>
+    
 @endsection

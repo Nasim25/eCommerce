@@ -32,6 +32,7 @@
     <script src="{{asset('admin')}}/vendor/jquery/jquery-1.12.3.min.js"></script>
     <!-- custome js -->
     <script src="{{asset('admin/js/admin_js.js')}}"></script>
+    
 
 
 </head>

@@ -53,15 +53,15 @@ class CategoryController extends Controller
             $data = $request->all();
 
             $rules=[
-                'category_name' => 'required|regex:/^[\pL\s\-]+$/u',
+                'category_name' => 'required',
                 'section_id'    => 'required',
-                'category_image'=> 'image',
+                'category_image'    =>  'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:width=294,height=147',
             ];
             $customeMessage=[
                 'category_name.required'    =>'Name is required',
-                'category_name.reges'       =>'Valid name is required',
                 'section_id.required'       =>'Section is required',
-                'category_image.image'      =>'Valid image is required'
+                'category_image.image'      =>'Valid image is required',
+                'category_image.dimensions'      =>'Invalid image(width:294px, height:147px)',
             ];
             $this->validate($request,$rules,$customeMessage);
             if($request->hasFile('category_image'))
@@ -74,7 +74,6 @@ class CategoryController extends Controller
                     $imagePath = 'public/image/category_image/'.$imageName;
                     // upload image
                     Image::make($image_temp)->save($imagePath);
-                    Image::make($image_temp)->resize(600,300)->save($imagePath);
                     // save image to database
                     $category->category_image = $imagePath;
                 }
