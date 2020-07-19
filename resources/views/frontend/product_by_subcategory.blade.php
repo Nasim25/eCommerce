@@ -181,20 +181,20 @@
                 <div class="carousel-inner">
                   <div class="item active"><img src="{{asset('frontend/')}}/images/slide3.jpg" alt="slide3">
                     <div class="carousel-caption">
-                      <h3><a title=" Sample Product" href="product-detail.html">50% OFF</a></h3>
+                      <h3><a title=" Sample Product" href="#">50% OFF</a></h3>
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                       <a class="link" href="#">Buy Now</a>
                     </div>
                   </div>
                   <div class="item"><img src="{{asset('frontend/')}}/images/slide1.jpg" alt="slide1">
                     <div class="carousel-caption">
-                      <h3><a title=" Sample Product" href="product-detail.html">Hot collection</a></h3>
+                      <h3><a title=" Sample Product" href="#">Hot collection</a></h3>
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </div>
                   </div>
                   <div class="item"><img src="{{asset('frontend/')}}/images/slide2.jpg" alt="slide2">
                     <div class="carousel-caption">
-                      <h3><a title=" Sample Product" href="product-detail.html">Summer collection</a></h3>
+                      <h3><a title=" Sample Product" href="#">Summer collection</a></h3>
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </div>
                   </div>

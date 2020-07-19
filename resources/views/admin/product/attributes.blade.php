@@ -12,6 +12,15 @@
     </div>
    </div>
    <div class="panel panel-default">
+   @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
         <div class="panel-heading">Add Product Attributes</div>
         <form method="post" action="{{url('/admin/add-attributes/'.$productDetails->id)}}" enctype="multipart/form-data">@csrf   
         <div class="panel-body">

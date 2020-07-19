@@ -19,7 +19,9 @@ class DeshboardController extends Controller
     public function deshboard()
     {
         $sections = Section::where('status', 1)->get();
-        return view('frontend.customer.customer_deshboard',compact('sections'));
+        
+        $orders = Order::with('shipping')->where('user_id',Auth::user()->id)->get();
+        return view('frontend.customer.customer_deshboard',compact('orders','sections'));
     }
     public function shipping()
     {
@@ -117,7 +119,8 @@ class DeshboardController extends Controller
     public function order_success()
     {
         $sections = Section::where('status', 1)->get();
-        return view('frontend.checkout.order_success',compact('sections'));
+        $orders = Order::where('user_id',auth::user()->id)->get();
+        return view('frontend.checkout.order_success',compact('sections','orders'));
     }
 
     

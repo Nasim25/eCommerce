@@ -192,7 +192,7 @@
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </div>
                   </div>
-                  <div class="item"><img src="{{asset('frontend/')}}/ images/slide2.jpg" alt="slide2">
+                  <div class="item"><img src="{{asset('frontend/')}}/images/slide2.jpg" alt="slide2">
                     <div class="carousel-caption">
                       <h3><a title=" Sample Product" href="product-detail.html">Summer collection</a></h3>
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>

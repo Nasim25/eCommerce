@@ -12,7 +12,15 @@
                     </ul>
                 </div>
             </div>
-            
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <div class="row animated fadeInUp">
                 <div class="col-sm-12 col-md-12 ">
                     <h4 class="section-subtitle"><b>Add Category</b></h4>

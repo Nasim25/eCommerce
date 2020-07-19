@@ -25,7 +25,7 @@
                     <!-- BEGIN DASHBOARD-->
                     <div class="dashboard">
                         <div class="welcome-msg">
-                            <p class="hello"><strong>Hello, john doe!</strong></p>
+                            <p class="hello"><strong>Hello, {{auth::user()->name}}!</strong></p>
                             <p>From your My Account Dashboard you have the ability to view a snapshot of your recent account activity and update your account information. Select a link below to view or edit information.</p>
                         </div>
                         <div class="recent-orders">
@@ -47,50 +47,20 @@
                                             <th>Ship To</th>
                                             <th><span class="nobr">Order Total</span></th>
                                             <th>Status</th>
-                                            <th>&nbsp;</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($orders as $order)
                                         <tr class="first odd">
-                                            <td>12800000002</td>
-                                            <td><span class="nobr">5/12/2015</span></td>
-                                            <td>jhon doe</td>
-                                            <td><span class="price">$403.00</span></td>
-                                            <td><em>Pending</em></td>
+                                            <td>{{$order->id}}</td>
+                                            <td><span class="nobr">{{ $order->created_at }}</span></td>
+                                            <td>{{$order->shipping->name}}</td>
+                                            <td><span class="price">Tk {{$order->order_total}}</span></td>
+                                            <td><em>{{$order->status == 0?'Pending':'Delevered'}}</em></td>
                                             <td class="a-center last"><span class="nobr"> <a href="#">View Order</a> </span></td>
                                         </tr>
-                                        <tr class="even">
-                                            <td>12800000001</td>
-                                            <td><span class="nobr">5/11/2015</span></td>
-                                            <td>jhon doe</td>
-                                            <td><span class="price">$506.50</span></td>
-                                            <td><em>Pending</em></td>
-                                            <td class="a-center last"><span class="nobr"> <a href="#">View Order</a> <span class="separator">|</span> <a href="#" class="link-reorder">Reorder</a> </span></td>
-                                        </tr>
-                                        <tr class="odd">
-                                            <td>13100000001</td>
-                                            <td><span class="nobr">5/9/2015</span></td>
-                                            <td>jhon doe</td>
-                                            <td><span class="price">$997.84</span></td>
-                                            <td><em>Pending</em></td>
-                                            <td class="a-center last"><span class="nobr"> <a href="#">View Order</a> <span class="separator">|</span> <a href="#" class="link-reorder">Reorder</a> </span></td>
-                                        </tr>
-                                        <tr class="even">
-                                            <td>12000000002</td>
-                                            <td><span class="nobr">4/1/2015</span></td>
-                                            <td>jhon doe</td>
-                                            <td><span class="price">$60.00</span></td>
-                                            <td><em>Pending</em></td>
-                                            <td class="a-center last"><span class="nobr"> <a href="#">View Order</a> <span class="separator">|</span> <a href="#" class="link-reorder">Reorder</a> </span></td>
-                                        </tr>
-                                        <tr class="last odd">
-                                            <td>12000000001</td>
-                                            <td><span class="nobr">4/1/2015</span></td>
-                                            <td>jhon doe</td>
-                                            <td><span class="price">$208.00</span></td>
-                                            <td><em>Pending</em></td>
-                                            <td class="a-center last"><span class="nobr"> <a href="#">View Order</a> <span class="separator">|</span> <a href="#" class="link-reorder">Reorder</a> </span></td>
-                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -178,16 +148,10 @@
                     <div class="block-title"> My Account </div>
                     <div class="block-content">
                         <ul>
-                            <li class="current"><a>Account Dashboard</a></li>
+                            
                             <li><a href="#"><span> Account Information</span></a></li>
-                            <li><a href="#"><span> Address Book</span></a></li>
                             <li><a href="#"><span> My Orders</span></a></li>
-                            <li><a href="#"><span> Billing Agreements</span></a></li>
-                            <li><a href="#"><span> Recurring Profiles</span></a></li>
                             <li><a href="#"><span> My Product Reviews</span></a></li>
-                            <li><a href="#"><span> My Wishlist</span></a></li>
-                            <li><a href="#"><span> My Applications</span></a></li>
-                            <li><a href="#"><span> Newsletter Subscriptions</span></a></li>
                             <li class="last"><a href="#"><span> My Downloadable Products</span></a></li>
                         </ul>
                     </div>
@@ -204,20 +168,20 @@
                                 <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
                             </ol>
                             <div class="carousel-inner">
-                                <div class="item active"><img src="images/slide3.jpg" alt="slide3">
+                                <div class="item active"><img src="{{asset('frontend/')}}/images/slide3.jpg" alt="slide3">
                                     <div class="carousel-caption">
                                         <h3><a title=" Sample Product" href="#">50% OFF</a></h3>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                                         <a class="link" href="#">Buy Now</a>
                                     </div>
                                 </div>
-                                <div class="item"><img src="images/slide1.jpg" alt="slide1">
+                                <div class="item"><img src="{{asset('frontend/')}}/images/slide1.jpg" alt="slide1">
                                     <div class="carousel-caption">
                                         <h3><a title=" Sample Product" href="#">Hot collection</a></h3>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                                     </div>
                                 </div>
-                                <div class="item"><img src="images/slide2.jpg" alt="slide2">
+                                <div class="item"><img src="{{asset('frontend/')}}/images/slide2.jpg" alt="slide2">
                                     <div class="carousel-caption">
                                         <h3><a title=" Sample Product" href="#">Summer collection</a></h3>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
