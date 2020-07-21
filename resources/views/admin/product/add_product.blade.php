@@ -98,11 +98,11 @@
                                     </div>
 
                                     <div class="form-group has-feedback">
-                                        <label for="category_image" class="control-label">Product Main Image</label>
+                                        <label for="category_image" class="control-label">Product Main Image (width:294,height:247)</label>
                                         <input type="file" class="form-control" id="main_image" name="main_image" required>
                                     </div>
                                     <div class="form-group has-feedback">
-                                        <label for="view_image" class="control-label">Product View Image</label>
+                                        <label for="view_image" class="control-label">Product View Image (width:700,height:700)</label>
                                         <input type="file" class="form-control" id="view_image" name="view_image" required>
                                     </div>
 

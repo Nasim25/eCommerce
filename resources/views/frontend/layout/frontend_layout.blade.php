@@ -26,6 +26,7 @@
 <link href="https://fonts.googleapis.com/css?family=Teko:300,400,500,600,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Saira+Condensed:300,400,500,600,700,800" rel="stylesheet">
 <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 @yield('fontend_css')
 </head>
 <body>
@@ -46,7 +47,7 @@
 @include('frontend.layout.include.mobile_menue')
 
 <!-- JavaScript --> 
-<script type="text/javascript" src="{{asset('frontend/')}}/js/jquery.min.js"></script> 
+
 <script type="text/javascript" src="{{asset('frontend/')}}/js/bootstrap.min.js"></script> 
 <script src="{{asset('frontend/')}}/js/bootstrap-slider.min.js"></script> 
 <script src="{{asset('frontend/')}}/js/bootstrap-select.min.js"></script> 

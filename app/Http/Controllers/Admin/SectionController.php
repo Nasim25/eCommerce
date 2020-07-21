@@ -32,4 +32,21 @@ class SectionController extends Controller
             return response()->json(['status'=>$status,'section_id'=>$data['section_id']]);
         }
     }
+
+    public function section_add()
+    {
+        return view('admin.section.add_section');
+    }
+
+    public function section_store(Request $request)
+    {
+       $request->validate([
+            'name' => 'required|unique:sections',
+        ]);
+
+        $section = new Section();
+        $section->name = $request->name;
+        $section->save();
+        return redirect('admin/section');
+    }
 }

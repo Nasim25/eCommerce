@@ -14,7 +14,9 @@
 
             <div class="row animated fadeInRight">
                     <div class="col-sm-12">
-                        <h4 style="background: white;padding: 13px;border-radius: 3px;margin-bottom: 1px;" class="section-subtitle"><b>Section</b></h4>
+                        <h4 style="background: white;padding: 13px;border-radius: 3px;margin-bottom: 1px;" class="section-subtitle"><b>Section</b>
+                        <a href="{{ url('admin/section-add')}}" class="btn btn-sm btn-success pull-right" style="margin-top:-6px;">Add Section</a>
+                    </h4>
                         <div class="panel">
                             <div class="panel-content">
                                 <table id="responsive-table" class="data-table table table-striped table-hover table-bordered responsive nowrap" cellspacing="0" width="100%">

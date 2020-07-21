@@ -21,7 +21,7 @@
         </ul>
     </div>
     @endif
-        <div class="panel-heading">Add Product Attributes</div>
+        <div class="panel-heading">Product Image (Image Size width:700,height:700)</div>
         <form method="post" action="{{url('/admin/add-attributes/'.$productDetails->id)}}" enctype="multipart/form-data">@csrf   
         <div class="panel-body">
                 <div class="form-group row">
@@ -59,7 +59,7 @@
                           <a class="productUpdateStatus" href="javascript:void(0)" id="image-{{$image->id}}" product_id="{{$image->id}}">Inactive</a>
                         @endif
                      </td>
-                     <td></td>
+                     <td><a href="{{url('admin/delete-attributes/'.$image->id)}}"><i style="color:red;" class="fa fa-trash" aria-hidden="true"></i></a></td>
                 </tr>
                @endforeach
             </tbody>
