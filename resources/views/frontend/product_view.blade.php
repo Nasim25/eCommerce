@@ -42,7 +42,7 @@
                                 <!-- For version 3 -->
                                 <div class="product-shop col-lg- col-sm-7 col-xs-12">
 
-                                    <div class="brand">UV</div>
+                                    <div class="brand">{{$product->brand->brand_name}}</div>
                                     <div class="product-name">
                                         <h1>{{$product->product_name}}</h1>
                                     </div>
@@ -50,7 +50,7 @@
                                         <div class="rating-box">
                                             <div style="width:60%" class="rating"></div>
                                         </div>
-                                        <p class="rating-links"> <a href="#">1 Review</a> </p>
+                                        <p class="rating-links"> <a href="#">{{$reviews->count('id')}} Review</a> </p>
                                     </div>
                                     <div class="price-block">
                                         <div class="price-box">
@@ -86,14 +86,14 @@
 
                                     </div>
                                     <div class="short-description">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla. Donec a neque libero. </p>
+                                        <p></p>
                                     </div>
                                     <div class="email-addto-box">
-                                        <ul class="add-to-links">
-                                            <li> <a class="link-wishlist" href="wishlist.html"><span>Add to Wishlist</span></a></li>
-                                            <li><a class="link-compare" href="compare.html"><span>Add to Compare</span></a></li>
-                                        </ul>
-                                        <p class="email-friend"><a href="#" class=""><span>Email to a Friend</span></a></p>
+                                        <!-- <ul class="add-to-links">
+                                            <li> <a class="link-wishlist" href="#"><span>Add to Wishlist</span></a></li>
+                                            <li><a class="link-compare" href="#"><span>Add to Compare</span></a></li>
+                                        </ul> -->
+                                        <p class="email-friend"></p>
                                     </div>
                                     <div class="social">
                                         <ul class="link">
@@ -108,8 +108,8 @@
                                     </div>
 
                                     <ul class="shipping-pro">
-                                        <li>Free Wordwide Shipping</li>
-                                        <li>30 Days Return</li>
+                                        <li>Wordwide Shipping</li>
+                                        <li>5 Days Return</li>
                                         <li>Member Discount</li>
                                     </ul>
                                 </div>
@@ -134,11 +134,11 @@
                             <div class="tab-pane fade" id="reviews_tabs">
                                 <div class="woocommerce-Reviews">
                                     <div>
-                                        <h2 class="woocommerce-Reviews-title">2 reviews for <span>Bacca Bucci Men's Running Shoes</span></h2>
+                                        <h2 class="woocommerce-Reviews-title">{{$reviews->count('id')}} reviews for <span>{{$product->product_name}}</span></h2>
                                         <ol class="commentlist">
+                                            @foreach($reviews as $review)
                                             <li class="comment">
                                                 <div>
-                                                    <img alt="" src="images/member1.png" class="avatar avatar-60 photo">
                                                     <div class="comment-text">
                                                         <div class="ratings">
                                                             <div class="rating-box">
@@ -147,35 +147,16 @@
 
                                                         </div>
                                                         <p class="meta">
-                                                            <strong>John Doe</strong>
-                                                            <span>–</span> April 19, 2018
+                                                            <strong>{{$review->name}}</strong>
+                                                            <span>–</span> {{$review->created_at}}
                                                         </p>
                                                         <div class="description">
-                                                            <p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                                            <p>Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis lorem ut libero malesuada feugiat. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.</p>
+                                                            {!! $review->review !!}
                                                         </div>
                                                     </div>
                                                 </div>
                                             </li><!-- #comment-## -->
-                                            <li class="comment">
-                                                <div>
-                                                    <img alt="" src="{{asset('frontend/')}}/images/member2.png" class="avatar avatar-60 photo">
-                                                    <div class="comment-text">
-                                                        <div class="ratings">
-                                                            <div class="rating-box">
-                                                                <div style="width:100%" class="rating"></div>
-                                                            </div>
-
-                                                        </div>
-                                                        <p class="meta">
-                                                            <strong>Stephen Smith</strong> <span>–</span> June 02, 2018
-                                                        </p>
-                                                        <div class="description">
-                                                            <p>Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li><!-- #comment-## -->
+                                            @endforeach
                                         </ol>
                                     </div>
                                     <div>
@@ -184,20 +165,9 @@
                                                 <span class="comment-reply-title">Add a review </span>
                                                 <form action="{{url('product-review')}}" method="post" class="comment-form" novalidate>@csrf
 
-                                                    <input type="hidden" name="product_id" value="{{$product->id}}"
-                                                    <p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p>
-                                                    <div class="comment-form-rating">
-                                                        <label id="rating">Your rating</label>
-                                                        <p class="stars">
-                                                            <span>
-                                                                <a class="star-1" href="#">1</a>
-                                                                <a class="star-2" href="#">2</a>
-                                                                <a class="star-3" href="#">3</a>
-                                                                <a class="star-4" href="#">4</a>
-                                                                <a class="star-5" href="#">5</a>
-                                                            </span>
-                                                        </p>
-                                                    </div>
+                                                    <input type="hidden" name="product_id" value="{{$product->id}}" required>
+                                                    <p class="comment-notes"><span id="email-notes">Your Phone Number will not be published.</span> Required fields are marked <span class="required">*</span></p>
+                                                    
                                                     <p class="comment-form-comment">
                                                         <label>Your review <span class="required">*</span></label>
                                                         <textarea id="review" name="review" placeholder="Enter Your Review" cols="45" rows="8" required></textarea>

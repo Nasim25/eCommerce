@@ -13463,10 +13463,7 @@ select#shipping-address-select {
 .b-filter__inner:before {
     content: "";
     display: block;
-    background: url(../images/pattern.svg) repeat 0px -0px;
-    /* background-repeat: repeat; */
-    /* background-position: top left; */
-    position: absolute;
+    
     width: 100%;
     height: 100%;
     left: 0;
