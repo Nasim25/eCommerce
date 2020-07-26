@@ -44,49 +44,47 @@ Route::get('/home', 'HomeController@index');
 Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin'], function (){
     Route::match(['get','post'],'login','AdminController@login');
     Route::group(['middleware' =>['admin']],function(){
-
+            
             Route::get('setting','AdminController@setting');
             Route::post('setting-update','AdminController@setting_update');
             Route::post('check-password','AdminController@checkpassword');
             Route::get('logout','AdminController@logout');
             Route::get('deshboard','AdminController@deshboard');
-
             // section
             Route::get('section','SectionController@section_list');
             Route::get('section-add','SectionController@section_add');
             Route::post('section-store','SectionController@section_store');
             Route::post('section-update-status','SectionController@section_update_status');
-
             // brand
             Route::get('brand','BrandController@index');
             Route::get('brand-create','BrandController@create');
             Route::post('brand-store','BrandController@brand_store');
+            // color
+            Route::get('color','ColorController@index');
+            Route::get('color-insert','ColorController@create');
+            Route::post('color-store','ColorController@color_store');
+            Route::post('color-import','ColorController@color_import');
+            Route::get('color-delete/{id}','ColorController@color_delete');
             // category
             Route::get('category','CategoryController@category_list');
             Route::post('category-update-status','CategoryController@category_update_status');
             Route::match(['get','post'],'add-edit-category/{id?}','CategoryController@add_edit_category');
-
             // Route::post('appand-category-lavel','CategoryController@appand_category_lavel');
             Route::post('appand-subcategory','CategoryController@appand_subcategory');
-
             // seb category
             Route::get('sub-category','CategoryController@subcategory');
             Route::match(['get','post'],'add-sub-category/{id?}','CategoryController@add_subcategory');
-
             // product
             Route::get('product','ProductController@product_list');
             Route::post('product-update-status','ProductController@product_update_status');
             Route::match(['get','post'],'add-edit-product/{id?}','ProductController@add_edit_product');
-
             // product attribuites
             Route::match(['get','post'],'add-attributes/{id}','ProductController@add_attributes');
             Route::get('delete-attributes/{id}','ProductController@delete_attributes');
-            
             // sleders
             Route::get('slider','SliderController@slider');
             Route::post('/slider-update-status','SliderController@slider_update_status');
             Route::match(['get','post'],'slider-add/{id?}','SliderController@slider_add');
-
             // order
             Route::get('order','OrderController@index');
             Route::get('order-details/{id}','OrderController@index_details');

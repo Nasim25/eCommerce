@@ -8,6 +8,7 @@ use App\Brand;
 use App\Product;
 use App\Section;
 use App\Category;
+use App\Color;
 use App\ProductAttribute;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -15,6 +16,7 @@ use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use App\ProductColor;
 use App\ProductImage;
+use App\Subcategory;
 
 class ProductController extends Controller
 {
@@ -43,9 +45,12 @@ class ProductController extends Controller
     public function add_edit_product(Request $request, $id = NULL)
     {
         if ($id == "") {
-            $product = new Product();
+            $title = "Add Product";
+            $productOld = new Product();
         } else {
-            echo "edit Product";
+            $title = "Edit Product";
+            $productOld = Product::where('id',$id)->first();
+
         }
 
         if ($request->isMethod('post')) {
@@ -103,10 +108,10 @@ class ProductController extends Controller
                     // upload image
                     Image::make($image_temp)->save($imagePath);
                     // save image to database
-                    $product->main_image = $imagePath;
+                    $productOld->main_image = $imagePath;
                 }
             } else {
-                $product->main_image = 'image/noimage.png';
+                $productOld->main_image = 'image/noimage.png';
             }
 
             // product view image
@@ -120,28 +125,28 @@ class ProductController extends Controller
                     // upload image
                     Image::make($image_temp)->save($imagePath);
                     // save image to database
-                    $product->view_image = $imagePath;
+                    $productOld->view_image = $imagePath;
                 }
             } else {
-                $product->view_image = 'image/view_noimage.png';
+                $productOld->view_image = 'image/view_noimage.png';
             }
             // Save Product details in product table
 
-            $product->subcategory_id    = $data['subcategory_id'];
-            $product->category_id       = $data['category_id'];
-            $product->brand_id          = $data['brand_id'];
-            $product->product_name      = $data['product_name'];
-            $product->product_slug      = Str::slug($data['product_name']);
-            $product->product_code      = $data['product_code'];
-            $product->product_price     = $data['product_price'];
-            $product->product_descount  = $data['product_descount'];
-            $product->description       = $data['description'];
-            $product->meta_title        = $data['meta_title'];
-            $product->meta_description  = $data['meta_description'];
-            $product->meta_keywords     = $data['meta_keywords'];
-            $product->is_featured       = $data['is_featured'];
-            $product->status            = 1;
-            $product->save();
+            $productOld->subcategory_id    = $data['subcategory_id'];
+            $productOld->category_id       = $data['category_id'];
+            $productOld->brand_id          = $data['brand_id'];
+            $productOld->product_name      = $data['product_name'];
+            $productOld->product_slug      = Str::slug($data['product_name']);
+            $productOld->product_code      = $data['product_code'];
+            $productOld->product_price     = $data['product_price'];
+            $productOld->product_descount  = $data['product_descount'];
+            $productOld->description       = $data['description'];
+            $productOld->meta_title        = $data['meta_title'];
+            $productOld->meta_description  = $data['meta_description'];
+            $productOld->meta_keywords     = $data['meta_keywords'];
+            $productOld->is_featured       = $data['is_featured'];
+            $productOld->status            = 1;
+            $productOld->save();
 
             if (!empty($data['product_color'])) {
                 foreach ($data['product_color'] as $color) {
@@ -156,12 +161,16 @@ class ProductController extends Controller
             return redirect('admin/product');
         }
 
-        $colors = array('Black', 'White', 'Red');
+        $colors = Color::orderBy('color_name')->get();
 
         $category = Category::where('status', 1)->get();
         $brands = Brand::where('status', 1)->get();
+        $subcategories = Subcategory::get();
         // echo "<pre>";print_r($category);die;
-        return view('admin.product.add_product')->with(compact('category', 'brands', 'colors'));
+       
+        return view('admin.product.add_product')->with(compact('subcategories','title','category', 'brands', 'colors', 'productOld'));
+        
+        
     }
 
     public function add_attributes(Request $request, $id = NULL)

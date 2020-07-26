@@ -15,7 +15,7 @@
             <div class="row animated fadeInRight">
                     <div class="col-sm-12">
                         <h4 style="background: white;padding: 13px;border-radius: 3px;margin-bottom: 1px;" class="section-subtitle"><b>Product</b>
-                        <a href="{{ url('admin/add-edit-product')}}" class="btn btn-sm btn-success pull-right" style="margin-top:-6px;">Add Product</a>
+                        <a href="{{ url('admin/add-edit-product')}}" class="btn btn-sm btn-success pull-right" style="margin-top:-6px;">Product</a>
                         </h4>
                         </h4>
                         <div class="panel">
@@ -36,29 +36,28 @@
                                     </thead>
                                     <tbody>
                                     @foreach($products as $key => $product)
-                                    <tr>
-                                        <td>{{ $key + 1 }}</td>
-                                        <td>{{Str::limit($product->product_name,10)}}</td>
-                                        <td>{{ $product->product_code }}</td>
-                                        <td>1</td>
-                                        <td>{{ $product->category->category_name }}</td>
-                                        <td>{{ $product->subcategory->subcategory_name }}</td>
-                                        <td>
-                                        <center><img src="{{ asset($product->main_image) }}" style="width:100px;height:100px;" /></center></td>
-                                        
-                                        <td>@if($product->status ==1)
-                                            <a class="productUpdateStatus" href="javascript:void(0)" id="product-{{$product->id}}" product_id="{{$product->id}}">Active</a>
-                                            @else
-                                            <a class="productUpdateStatus" href="javascript:void(0)" id="product-{{$product->id}}" product_id="{{$product->id}}">Inactive</a>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <a href="{{url('admin/add-attributes/'.$product->id)}}"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                                            <a href=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                            <a href=""><i class="fa fa-image"></i></a>
-                                            <a href=""><i style="color:red;" class="fa fa-trash" aria-hidden="true"></i></a>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{Str::limit($product->product_name,10)}}</td>
+                                            <td>{{ $product->product_code }}</td>
+                                            <td>1</td>
+                                            <td>{{ $product->category->category_name }}</td>
+                                            <td>{{ $product->subcategory->subcategory_name }}</td>
+                                            <td>
+                                            <center><img src="{{ asset($product->main_image) }}" style="width:100px;height:100px;" /></center></td>
+                                            
+                                            <td>@if($product->status ==1)
+                                                <a class="productUpdateStatus" href="javascript:void(0)" id="product-{{$product->id}}" product_id="{{$product->id}}">Active</a>
+                                                @else
+                                                <a class="productUpdateStatus" href="javascript:void(0)" id="product-{{$product->id}}" product_id="{{$product->id}}">Inactive</a>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <a href="{{url('admin/add-edit-product/'.$product->id)}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                <a href="{{url('admin/add-attributes/'.$product->id)}}"><i class="fa fa-image"></i></a>
+                                                <a href=""><i style="color:red;" class="fa fa-trash" aria-hidden="true"></i></a>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                     </tbody>
                                 </table>

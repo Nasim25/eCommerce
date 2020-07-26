@@ -1,5 +1,4 @@
 <div class="page-header">
-    <!-- LEFTSIDE header -->
     <div class="leftside-header">
         <div class="logo">
             <a href="{{ url('admin/deshboard') }}" class="on-click">
@@ -10,18 +9,14 @@
             <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
         </div>
     </div>
-    <!-- RIGHTSIDE header -->
     <div class="rightside-header">
         <div class="header-middle"></div>
-        <!--SEARCH HEADERBOX-->
         <div class="header-section" id="search-headerbox">
             <input type="text" name="search" id="search" placeholder="Search...">
             <i class="fa fa-search search" id="search-icon" aria-hidden="true"></i>
             <div class="header-separator"></div>
         </div>
-        <!--NOCITE HEADERBOX-->
         <div class="header-section hidden-xs" id="notice-headerbox">
-            <!--check list-->
             <div class="notice" id="checklist-notice">
                 <i class="fa fa-check-square-o" aria-hidden="true"></i>
                 <div class="dropdown-box basic">
@@ -69,7 +64,6 @@
                     </div>
                 </div>
             </div>
-            <!--messages-->
             <div class="notice" id="messages-notice">
                 <i class="fa fa-comments-o" aria-hidden="true"><span class="badge badge-xs badge-top-right x-danger"><i class="fa fa-exclamation"></i></span>
                 </i>
@@ -134,7 +128,6 @@
                     </div>
                 </div>
             </div>
-            <!--alerts notices-->
             <div class="notice" id="alerts-notice">
                 <i class="fa fa-bell-o" aria-hidden="true"><span class="badge badge-xs badge-top-right x-danger">7</span></i>
 
@@ -202,7 +195,6 @@
             </div>
             <div class="header-separator"></div>
         </div>
-        <!--USER HEADERBOX -->
         <div class="header-section" id="user-headerbox">
             <div class="user-header-wrap">
                 <div class="user-photo">
@@ -227,7 +219,6 @@
             </div>
         </div>
         <div class="header-separator"></div>
-        <!--Log out -->
         <div class="header-section">
             <a href="{{url('admin/logout')}}" data-toggle="tooltip" data-placement="left" title="Logout"><i class="fa fa-sign-out log-out" aria-hidden="true"></i></a>
         </div>
