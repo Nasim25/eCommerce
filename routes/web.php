@@ -50,6 +50,8 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin'], function (
             Route::post('check-password','AdminController@checkpassword');
             Route::get('logout','AdminController@logout');
             Route::get('deshboard','AdminController@deshboard');
+
+            Route::get('admin-list','AdminController@admin_list');
             // section
             Route::get('section','SectionController@section_list');
             Route::get('section-add','SectionController@section_add');
@@ -88,6 +90,8 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin'], function (
             // order
             Route::get('order','OrderController@index');
             Route::get('order-details/{id}','OrderController@index_details');
+            // customer
+            Route::get('customer-list','CustomerController@customer_list');
     });
     
 });

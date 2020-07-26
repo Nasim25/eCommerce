@@ -3,9 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use Session;
+use App\User;
 use App\Admin;
+use App\Order;
+use App\Product;
+use App\Category;
+use App\Subcategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Review;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,7 +20,14 @@ class AdminController extends Controller
     public function deshboard()
     {
         Session::put('page','admin');
-        return view('admin.deshboard');
+        $products = Product::where('status',1)->get();
+        $categories = Category::get();
+        $orders = Order::latest()->get();
+        $subcategories = Subcategory::get();
+        $users = Admin::get();
+        $customer = User::get();
+        $reviews = Review::latest()->get();
+        return view('admin.deshboard',compact('products','orders','categories','subcategories','users','customer','reviews'));
     }
 
     public function setting()
@@ -84,5 +97,11 @@ class AdminController extends Controller
     {
         Auth::guard('admin')->logout();
         return redirect('admin/login');
+    }
+    public function admin_list()
+    {
+        Session::put('page','admin_list');
+        $users = Admin::orderBy('name')->get();
+        return view('admin.admin.admin_list',compact('users'));
     }
 }
