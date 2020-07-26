@@ -74,7 +74,7 @@
                         <?php $slider = "close"; ?>
                     @endif
                     <li class=" {{$slider}}-item">
-                        <a href="{{url('admin/slider')}}"><i class="fa fa-pie-chart" aria-hidden="true"></i><span>Sliders</span></a>
+                        <a href="{{url('admin/slider')}}"><i class="fa fa-sliders"></i><span>Sliders</span></a>
                     </li>
                     @if(Session::get('page')=='order')
                         <?php $order = "open"; ?>
@@ -82,7 +82,23 @@
                         <?php $order = "close"; ?>
                     @endif
                     <li class=" {{$order}}-item">
-                        <a href="{{url('admin/order')}}"><i class="fa fa-pie-chart" aria-hidden="true"></i><span>Order</span></a>
+                        <a href="{{url('admin/order')}}"><i class="fa fa-shopping-bag"></i><span>Order</span></a>
+                    </li>
+                    @if(Session::get('page')=='customer')
+                        <?php $order = "open"; ?>
+                    @else
+                        <?php $order = "close"; ?>
+                    @endif
+                    <li class=" {{$order}}-item">
+                        <a href="{{url('admin/customer-list')}}"><i class="fa fa-users"></i><span>Customers</span></a>
+                    </li>
+                    @if(Session::get('page')=='admin_list')
+                        <?php $order = "open"; ?>
+                    @else
+                        <?php $order = "close"; ?>
+                    @endif
+                    <li class=" {{$order}}-item">
+                        <a href="{{url('admin/admin-list')}}"><i class="fa fa-users"></i><span>Users</span></a>
                     </li>
                     
                     

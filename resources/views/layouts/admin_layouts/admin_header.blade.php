@@ -17,53 +17,7 @@
             <div class="header-separator"></div>
         </div>
         <div class="header-section hidden-xs" id="notice-headerbox">
-            <div class="notice" id="checklist-notice">
-                <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                <div class="dropdown-box basic">
-                    <div class="drop-header">
-                        <h3><i class="fa fa-check-square-o" aria-hidden="true"></i> To-Do List</h3>
-                    </div>
-                    <div class="drop-content">
-                        <div class="widget-list list-to-do">
-                            <ul>
-                                <li>
-                                    <div class="checkbox-custom checkbox-primary">
-                                        <input type="checkbox" id="check-s1" value="option1">
-                                        <label class="check" for="check-s1">Accusantium eveniet ipsam neque</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="checkbox-custom checkbox-primary">
-                                        <input type="checkbox" id="check-s2" value="option1" checked>
-                                        <label class="check" for="check-s2">Lorem ipsum dolor sit</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="checkbox-custom checkbox-primary">
-                                        <input type="checkbox" id="check-s3" value="option1">
-                                        <label class="check" for="check-s3">Dolor eligendi in ipsum sapiente</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="checkbox-custom checkbox-primary">
-                                        <input type="checkbox" id="check-s4" value="option1">
-                                        <label class="check" for="check-s4">Natus recusandae vel</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="checkbox-custom checkbox-primary">
-                                        <input type="checkbox" id="check-s5" value="option1">
-                                        <label class="check" for="check-s5">Adipisci amet officia tempore ut</label>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="drop-footer">
-                        <a>See all Items</a>
-                    </div>
-                </div>
-            </div>
+            
             <div class="notice" id="messages-notice">
                 <i class="fa fa-comments-o" aria-hidden="true"><span class="badge badge-xs badge-top-right x-danger"><i class="fa fa-exclamation"></i></span>
                 </i>
@@ -210,10 +164,8 @@
             <div class="user-options dropdown-box">
                 <div class="drop-content basic">
                     <ul>
-                        <li> <a href="pages_user-profile.html"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
+                        <li> <a href="{{ url('admin/setting') }}"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
                         <li> <a href="{{ url('admin/setting') }}"><i class="fa fa-user" aria-hidden="true"></i> Setting</a></li>
-                        <li> <a href="pages_lock-screen.html"><i class="fa fa-lock" aria-hidden="true"></i> Lock Screen</a></li>
-                        <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i> Configurations</a></li>
                     </ul>
                 </div>
             </div>
