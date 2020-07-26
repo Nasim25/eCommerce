@@ -26,4 +26,8 @@ class Product extends Model
     {
         return $this->belongsTo('App\Brand','brand_id');
     }
+    public function colors()
+    {
+        return $this->hasMany('App\Color');
+    }
 }

@@ -33,7 +33,9 @@
                             @else
                             <?php $section = "close"; ?>
                             @endif
+                            @if(Auth::guard('admin')->user()->type ==1)
                             <li class="{{$section}}-item"><a href="{{ url('admin/section') }}">Section</a></li>
+                            @endif
                             @if(Session::get('page')=='category')
                             <?php $category = "open"; ?>
                             @else
@@ -52,12 +54,18 @@
                             <?php $brand = "close"; ?>
                             @endif
                             <li class="{{$brand}}-item"><a href="{{ url('admin/brand') }}">Brand</a></li>
-                            @if(Session::get('page')=='product')
-                            <?php $product = "open"; ?>
+                            @if(Session::get('page')=='color')
+                            <?php $brand = "open"; ?>
                             @else
-                            <?php $product = "close"; ?>
+                            <?php $brand = "close"; ?>
                             @endif
-                            <li class="{{$product}}-item"><a href="{{ url('admin/product') }}">Product</a></li>
+                            <li class="{{$brand}}-item"><a href="{{ url('admin/color') }}">Color</a></li>
+                            @if(Session::get('page')=='color')
+                            <?php $color = "open"; ?>
+                            @else
+                            <?php $color = "close"; ?>
+                            @endif
+                            <li class="{{$color}}-item"><a href="{{ url('admin/product') }}">Product</a></li>
                         </ul>
                     </li>
                     @if(Session::get('page')=='slider')

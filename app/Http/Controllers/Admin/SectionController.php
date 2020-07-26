@@ -2,22 +2,35 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Session;
 use App\Section;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Session;
+use Illuminate\Support\Facades\Auth;
 
 class SectionController extends Controller
 {
+
     public function section_list()
     {   
-        Session::put('page','sections');
-        $sections = Section::orderBy('name')->get();
-        return view('admin.section.section_list',compact('sections'));
+        if(Auth::guard('admin')->user()->type != 1)
+        {
+            return redirect('admin/deshboard');
+        }
+
+            Session::put('page','sections');
+            $sections = Section::orderBy('name')->get();
+            return view('admin.section.section_list',compact('sections'));
+        
     }
 
     public function section_update_status(Request $request)
     {
+        if(Auth::guard('admin')->user()->type != 1)
+        {
+            return redirect('admin/deshboard');
+        }
+
         if($request->ajax())
         {
             $data = $request->all();
@@ -35,11 +48,21 @@ class SectionController extends Controller
 
     public function section_add()
     {
+        if(Auth::guard('admin')->user()->type != 1)
+        {
+            return redirect('admin/deshboard');
+        }
+
         return view('admin.section.add_section');
     }
 
     public function section_store(Request $request)
     {
+        if(Auth::guard('admin')->user()->type != 1)
+        {
+            return redirect('admin/deshboard');
+        }
+        
        $request->validate([
             'name' => 'required|unique:sections',
         ]);
